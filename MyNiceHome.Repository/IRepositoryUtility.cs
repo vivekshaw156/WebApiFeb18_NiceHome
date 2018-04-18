@@ -14,5 +14,6 @@ namespace MyNiceHome.Repository
         /// </summary>
         /// <returns></returns>
         bool Create();
+        bool GetNewConnection();
     }
 }

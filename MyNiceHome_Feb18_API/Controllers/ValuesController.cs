@@ -12,7 +12,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         [HttpPost]
         public void Signup([FromBody]string value)
         {
-
+            
         }
 
         // PUT api/values/5

@@ -10,5 +10,6 @@ namespace MyNiceHome.BusinessManager.Interfaces
     {
         // todo - pass a new user entity object into create
         bool Create();
+        bool GetConnection();
     }
 }

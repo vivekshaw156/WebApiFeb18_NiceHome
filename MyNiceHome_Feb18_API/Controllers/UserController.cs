@@ -1,5 +1,4 @@
 ﻿using MyNiceHome.BusinessManager.Interfaces;
-using MyNiceHome.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,47 +8,38 @@ using System.Web.Http;
 
 namespace MyNiceHome_Feb18_API.Controllers
 {
-    /// <summary>
-    /// UserController Class
-    /// </summary>
     public class UserController : ApiController
     {
-        /// <summary>
-        /// Readonly reference of IUserUtility Interface
-        /// </summary>
         private readonly IUserUtility _userUtility;
-
-        /// <summary>
-        /// UserController Constructor
-        /// </summary>
-        /// <param name="userUtility"></param>
+        
         public UserController(IUserUtility userUtility)
         {
             _userUtility = userUtility;
         }
-
-        #region HttpGet Methods
         [HttpGet]
         public IHttpActionResult Index()
         {
             _userUtility.GetConnection();
             return Ok("Success");
         }
-        #endregion
 
-        #region HttpPost Methods
         [HttpPost]
-        public IHttpActionResult CreateHost([FromBody] Host host)
+        // todo - pass a host object to this action
+        public IHttpActionResult CreateHost()
         {
-            bool result = _userUtility.CreateNewHost(host);
-            return Ok();
+            // todo - pass a host object to this method
+            //_userUtility.CreateNewHost();
+            return Ok("Success");
         }
+
         [HttpPost]
-        public IHttpActionResult CreateTraveller([FromBody] Traveller traveller)
+        // todo - pass a traveller object to this action
+        public IHttpActionResult CreateTraveller()
         {
-            bool result = _userUtility.CreateNewTraveller(traveller);
-            return Ok();
+            // todo - pass a host object to this method
+            //_userUtility.CreateNewTraveller();
+            return Ok("Success");
         }
-        #endregion
+
     }
 }

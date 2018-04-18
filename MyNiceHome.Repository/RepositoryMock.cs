@@ -12,31 +12,19 @@ namespace MyNiceHome.Repository
     /// </summary>
     public class RepositoryMock : IRepositoryUtility
     {
-        /// <summary>
-        /// Mocked Connection Method
-        /// </summary>
-        /// <returns></returns>
-        public bool GetNewConnection()
-        {
-            return true;
-        }
-
-        /// <summary>
-        /// Mocked AddHost Method
-        /// </summary>
-        /// <param name="host"></param>
-        /// <returns></returns>
+        // todo - pass a host object to this method
         public bool AddHost(Host host)
         {
-            return true;
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Mocked AddTraveller Method
-        /// </summary>
-        /// <param name="traveller"></param>
-        /// <returns></returns>
+        // todo - pass a traveller object to this method
         public bool AddTraveller(Traveller traveller)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GetNewConnection()
         {
             return true;
         }

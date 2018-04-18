@@ -7,28 +7,15 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Repository
 {
-    /// <summary>
-    /// IRepositoryUtility Interface
-    /// </summary>
     public interface IRepositoryUtility
     {
+        // todo - pass object of user entity here
         /// <summary>
-        /// UnImplemented Method for Adding Host data in Database
+        /// Creates a new user in the database
         /// </summary>
         /// <returns></returns>
         bool AddHost(Host host);
-
-        /// <summary>
-        /// UnImplemented Method for Adding Traveller data in Database
-        /// </summary>
-        /// <param name="traveller"></param>
-        /// <returns></returns>
         bool AddTraveller(Traveller traveller);
-
-        /// <summary>
-        /// UnImplemented Method for Creating Connection
-        /// </summary>
-        /// <returns></returns>
         bool GetNewConnection();
     }
 }

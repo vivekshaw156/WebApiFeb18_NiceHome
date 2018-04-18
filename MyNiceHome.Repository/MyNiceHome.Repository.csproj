@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepositoryUtility.cs" />
     <Compile Include="MyNiceHomeContext.cs" />
+    <Compile Include="IRepositoryUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryMock.cs" />
     <Compile Include="RepositoryUtility.cs" />
@@ -56,6 +56,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyNiceHome.Entities\MyNiceHome.Entities.csproj">
+      <Project>{E9547194-F0CF-423E-B0C6-C543D6CC197B}</Project>
+      <Name>MyNiceHome.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

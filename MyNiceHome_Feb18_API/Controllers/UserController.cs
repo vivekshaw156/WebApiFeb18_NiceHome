@@ -11,14 +11,21 @@ namespace MyNiceHome_Feb18_API.Controllers
     public class UserController : ApiController
     {
         private readonly IUserUtility _userUtility;
+        
         public UserController(IUserUtility userUtility)
         {
             _userUtility = userUtility;
         }
-        [HttpPost]
-        public IHttpActionResult Create()
+        [HttpGet]
+        public IHttpActionResult Index()
         {
-            return Ok();
+            _userUtility.GetConnection();
+            return Ok("Success");
         }
+        //[HttpPost]
+        //public IHttpActionResult Create()
+        //{
+        //    return Ok();
+        //}
     }
 }

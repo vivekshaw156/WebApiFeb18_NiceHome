@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Repository
 {
-    public class RepositoryUtility
+    public class RepositoryUtility:IRepositoryUtility
     {
+        MyNiceHomeContext context = new MyNiceHomeContext();
+
         public bool Create()
         {
-            // todo adding a new host or traveller
+            throw new NotImplementedException();
+        }
+
+        public bool GetNewConnection()
+        {
+            context.HostDetails.ToList();
             return true;
         }
     }

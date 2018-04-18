@@ -19,6 +19,10 @@ namespace MyNiceHome.BusinessManager
         {
             throw new NotImplementedException();
         }
-
+        public bool GetConnection()
+        {
+            _repositoryUtility.GetNewConnection();
+            return true;
+        }
     }
 }

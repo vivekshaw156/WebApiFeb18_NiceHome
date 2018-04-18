@@ -16,5 +16,9 @@ namespace MyNiceHome.Repository
             // todo - object validations
             throw new NotImplementedException();
         }
+        public bool GetNewConnection()
+        {
+            return true;
+        }
     }
 }

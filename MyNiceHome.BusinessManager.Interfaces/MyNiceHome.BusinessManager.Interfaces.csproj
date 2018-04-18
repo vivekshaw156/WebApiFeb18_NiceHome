@@ -54,5 +54,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyNiceHome.Entities\MyNiceHome.Entities.csproj">
+      <Project>{E9547194-F0CF-423E-B0C6-C543D6CC197B}</Project>
+      <Name>MyNiceHome.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

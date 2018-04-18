@@ -55,6 +55,10 @@
       <Project>{7ec3aa6e-fea7-4bff-a91d-7812baa649db}</Project>
       <Name>MyNiceHome.BusinessManager.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyNiceHome.Entities\MyNiceHome.Entities.csproj">
+      <Project>{E9547194-F0CF-423E-B0C6-C543D6CC197B}</Project>
+      <Name>MyNiceHome.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyNiceHome.Repository\MyNiceHome.Repository.csproj">
       <Project>{20b914de-f3d7-45ed-8a78-7058a8a245d3}</Project>
       <Name>MyNiceHome.Repository</Name>

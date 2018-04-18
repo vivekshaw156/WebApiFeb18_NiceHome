@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNiceHome.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,31 @@ namespace MyNiceHome.Repository
     /// </summary>
     public class RepositoryMock : IRepositoryUtility
     {
-        public bool Create()
-        {
-            // todo - object validations
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Mocked Connection Method
+        /// </summary>
+        /// <returns></returns>
         public bool GetNewConnection()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Mocked AddHost Method
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public bool AddHost(Host host)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Mocked AddTraveller Method
+        /// </summary>
+        /// <param name="traveller"></param>
+        /// <returns></returns>
+        public bool AddTraveller(Traveller traveller)
         {
             return true;
         }

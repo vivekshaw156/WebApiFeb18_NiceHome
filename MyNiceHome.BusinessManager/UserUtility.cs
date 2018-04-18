@@ -19,5 +19,6 @@ namespace MyNiceHome.BusinessManager
         {
             throw new NotImplementedException();
         }
+
     }
 }

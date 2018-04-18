@@ -15,10 +15,19 @@ namespace MyNiceHome.BusinessManager
         {
             _repositoryUtility = repositoryUtility;
         }
-        public bool Create()
+        
+        // todo - pass a host object to this method
+        public bool CreateNewHost()
         {
             throw new NotImplementedException();
         }
+
+        // todo - pass a host object to this method
+        public bool CreateNewTraveller()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool GetConnection()
         {
             _repositoryUtility.GetNewConnection();

@@ -22,10 +22,24 @@ namespace MyNiceHome_Feb18_API.Controllers
             _userUtility.GetConnection();
             return Ok("Success");
         }
-        //[HttpPost]
-        //public IHttpActionResult Create()
-        //{
-        //    return Ok();
-        //}
+
+        [HttpPost]
+        // todo - pass a host object to this action
+        public IHttpActionResult CreateHost()
+        {
+            // todo - pass a host object to this method
+            _userUtility.CreateNewHost();
+            return Ok("Success");
+        }
+
+        [HttpPost]
+        // todo - pass a traveller object to this action
+        public IHttpActionResult CreateTraveller()
+        {
+            // todo - pass a host object to this method
+            _userUtility.CreateNewTraveller();
+            return Ok("Success");
+        }
+
     }
 }

@@ -13,7 +13,8 @@ namespace MyNiceHome.Repository
         /// Creates a new user in the database
         /// </summary>
         /// <returns></returns>
-        bool Create();
+        bool AddHost();
+        bool AddTraveller();
         bool GetNewConnection();
     }
 }

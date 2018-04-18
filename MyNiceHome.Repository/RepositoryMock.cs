@@ -11,11 +11,18 @@ namespace MyNiceHome.Repository
     /// </summary>
     public class RepositoryMock : IRepositoryUtility
     {
-        public bool Create()
+        // todo - pass a host object to this method
+        public bool AddHost()
         {
-            // todo - object validations
             throw new NotImplementedException();
         }
+
+        // todo - pass a traveller object to this method
+        public bool AddTraveller()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool GetNewConnection()
         {
             return true;

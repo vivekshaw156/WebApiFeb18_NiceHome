@@ -9,7 +9,8 @@ namespace MyNiceHome.BusinessManager.Interfaces
     public interface IUserUtility
     {
         // todo - pass a new user entity object into create
-        bool Create();
+        bool CreateNewHost();
+        bool CreateNewTraveller();
         bool GetConnection();
     }
 }

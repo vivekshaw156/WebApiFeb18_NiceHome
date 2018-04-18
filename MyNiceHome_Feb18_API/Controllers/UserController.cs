@@ -28,7 +28,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         public IHttpActionResult CreateHost()
         {
             // todo - pass a host object to this method
-            _userUtility.CreateNewHost();
+            //_userUtility.CreateNewHost();
             return Ok("Success");
         }
 
@@ -37,7 +37,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         public IHttpActionResult CreateTraveller()
         {
             // todo - pass a host object to this method
-            _userUtility.CreateNewTraveller();
+            //_userUtility.CreateNewTraveller();
             return Ok("Success");
         }
 

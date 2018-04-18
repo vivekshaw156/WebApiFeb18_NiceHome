@@ -49,9 +49,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserUtilityTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyNiceHome.BusinessManager.Interfaces\MyNiceHome.BusinessManager.Interfaces.csproj">
+      <Project>{7ec3aa6e-fea7-4bff-a91d-7812baa649db}</Project>
+      <Name>MyNiceHome.BusinessManager.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyNiceHome.BusinessManager\MyNiceHome.BusinessManager.csproj">
+      <Project>{1e929daa-ab17-4fbc-858d-23c58e232db3}</Project>
+      <Name>MyNiceHome.BusinessManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyNiceHome.Entities\MyNiceHome.Entities.csproj">
+      <Project>{e9547194-f0cf-423e-b0c6-c543d6cc197b}</Project>
+      <Name>MyNiceHome.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyNiceHome.Exceptions\MyNiceHome.Exceptions.csproj">
+      <Project>{16fcdac1-d67f-48ed-9890-610bf5131e6e}</Project>
+      <Name>MyNiceHome.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyNiceHome.Repository\MyNiceHome.Repository.csproj">
+      <Project>{20b914de-f3d7-45ed-8a78-7058a8a245d3}</Project>
+      <Name>MyNiceHome.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -41,6 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyNiceHome.BusinessManager.Interfaces\MyNiceHome.BusinessManager.Interfaces.csproj">
+      <Project>{7ec3aa6e-fea7-4bff-a91d-7812baa649db}</Project>
+      <Name>MyNiceHome.BusinessManager.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyNiceHome.Repository\MyNiceHome.Repository.csproj">
+      <Project>{20b914de-f3d7-45ed-8a78-7058a8a245d3}</Project>
+      <Name>MyNiceHome.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

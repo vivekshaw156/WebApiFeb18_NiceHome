@@ -35,7 +35,22 @@ namespace MyNiceHome.BusinessManager
         /// <returns></returns>
         public bool CreateNewHost(Host host)
         {
-            throw new NotImplementedException();
+            if (_repositoryUtility.CheckIfHostExists(host))
+            {
+                // todo throw an exception for already registered host
+            }
+            else
+            {
+                if (_repositoryUtility.AddHost(host))
+                {
+                    //todo send message for successful host aadition in Database
+                }
+                else
+                {
+                    //todo throw exception for not adding in Database
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -45,7 +60,22 @@ namespace MyNiceHome.BusinessManager
         /// <returns></returns>
         public bool CreateNewTraveller(Traveller traveller)
         {
-            throw new NotImplementedException();
+            if (_repositoryUtility.CheckIfTravellerExists(traveller))
+            {
+                // todo throw an exception for already registered host
+            }
+            else
+            {
+                if (_repositoryUtility.AddTraveller(traveller))
+                {
+                    //todo send message for successful host aadition in Database
+                }
+                else
+                {
+                    //todo throw exception for not adding in Database
+                }
+            }
+            return true;
         }
 
         /// <summary>

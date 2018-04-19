@@ -28,5 +28,13 @@ namespace MyNiceHome.Repository
         {
             return true;
         }
+        public bool CheckIfHostExists(Host host)
+        {
+            return true;
+        }
+        public bool CheckIfTravellerExists(Traveller traveller)
+        {
+            return true;
+        }
     }
 }

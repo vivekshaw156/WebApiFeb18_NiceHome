@@ -2,6 +2,7 @@
 using MyNiceHome.BusinessManager.Interfaces;
 using MyNiceHome.Repository;
 using MyNiceHome.Entities;
+using MyNiceHome.Exceptions;
 
 namespace MyNiceHome.BusinessManager.Test
 {
@@ -79,8 +80,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if a name is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidNameException
-        //[ExpectedException(typeof(InvalidNameException))]
+        [ExpectedException(typeof(InvalidNameException))]
         public void UserUtility_CreateNewHost_InvalidNameTest()
         {
             Host host = new Host
@@ -91,7 +91,6 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331234",
                 HostPassword = "password123"
             };
-            //todo make a valid object of an user with a wrong type of name
             var result = _userUtility.CreateNewHost(host);
         }
 
@@ -99,8 +98,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if city is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidCityException
-        //[ExpectedException(typeof(InvalidCityException))]
+        [ExpectedException(typeof(InvalidCityException))]
         public void UserUtility_CreateNewHost_InvalidCityTest()
         {
             Host host = new Host
@@ -111,7 +109,6 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331234",
                 HostPassword = "password123"
             };
-            //todo make a valid object of an user with a wrong type of name
             var result = _userUtility.CreateNewHost(host);
         }
 
@@ -119,8 +116,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if phone number is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidPhoneNumberException
-        //[ExpectedException(typeof(InvalidPhoneNumberException))]
+        [ExpectedException(typeof(InvalidPhoneNumberException))]
         public void UserUtility_CreateNewHost_InvalidPhoneNumberTest()
         {
             Host host = new Host
@@ -131,7 +127,6 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "qwert",
                 HostPassword = "password123"
             };
-            //todo make a valid object of an user with a wrong type of name
             var result = _userUtility.CreateNewHost(host);
         }
 
@@ -139,8 +134,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if password is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidPasswordException
-        //[ExpectedException(typeof(InvalidPasswordException))]
+        [ExpectedException(typeof(InvalidPasswordException))]
         public void UserUtility_CreateNewHost_InvalidPasswordTest()
         {
             Host host = new Host
@@ -151,7 +145,24 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331234",
                 HostPassword = "123"
             };
-            //todo make a valid object of an user with a wrong type of name
+            var result = _userUtility.CreateNewHost(host);
+        }
+
+        /// <summary>
+        /// Tests if a duplicate entry exists in the database
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateEntryException))]
+        public void UserUtility_CreateNewHost_DuplicateEntryTest()
+        {
+            Host host = new Host
+            {
+                HostName = "Rajiv Thakur",
+                HostCity = "Kolkata",
+                HostEmail = "something@domainName.com",
+                HostPhone = "9674331556",
+                HostPassword = "qwerty123"
+            };
             var result = _userUtility.CreateNewHost(host);
         }
 
@@ -163,8 +174,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if a name is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidNameException
-        //[ExpectedException(typeof(InvalidNameException))]
+        [ExpectedException(typeof(InvalidNameException))]
         public void UserUtility_CreateNewTraveller_InvalidNameTest()
         {
             Traveller traveller = new Traveller
@@ -175,7 +185,6 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331234",
                 TravellerPassword = "password123"
             };
-            //todo make a valid object of an user with a wrong type of name
             var result = _userUtility.CreateNewTraveller(traveller);
         }
 
@@ -183,8 +192,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if city is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidCityException
-        //[ExpectedException(typeof(InvalidCityException))]
+        [ExpectedException(typeof(InvalidCityException))]
         public void UserUtility_CreateNewTraveller_InvalidCityTest()
         {
             Traveller traveller = new Traveller
@@ -195,7 +203,6 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331234",
                 TravellerPassword = "password123"
             };
-            //todo make a valid object of an user with a wrong type of name
             var result = _userUtility.CreateNewTraveller(traveller);
         }
 
@@ -203,8 +210,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if phone number is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidPhoneNumberException
-        //[ExpectedException(typeof(InvalidPhoneNumberException))]
+        [ExpectedException(typeof(InvalidPhoneNumberException))]
         public void UserUtility_CreateNewTraveller_InvalidPhoneNumberTest()
         {
             Traveller traveller = new Traveller
@@ -223,8 +229,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if password is invalid
         /// </summary>
         [TestMethod]
-        // todo - expect an InvalidPasswordException
-        //[ExpectedException(typeof(InvalidPasswordException))]
+        [ExpectedException(typeof(InvalidPasswordException))]
         public void UserUtility_CreateNewTraveller_InvalidPasswordTest()
         {
             Traveller traveller = new Traveller
@@ -235,7 +240,24 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331234",
                 TravellerPassword = "123"
             };
-            //todo make a valid object of an user with a wrong type of name
+            var result = _userUtility.CreateNewTraveller(traveller);
+        }
+
+        /// <summary>
+        /// Tests if a duplicate entry exists in the database
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateEntryException))]
+        public void UserUtility_CreateNewTraveller_DuplicateEntryTest()
+        {
+            Traveller traveller = new Traveller
+            {
+                TravellerName = "Rajiv Thakur",
+                TravellerCity = "Kolkata",
+                TravellerEmail = "something@domainName.com",
+                TravellerPhone = "9674331556",
+                TravellerPassword = "qwerty123"
+            };
             var result = _userUtility.CreateNewTraveller(traveller);
         }
 

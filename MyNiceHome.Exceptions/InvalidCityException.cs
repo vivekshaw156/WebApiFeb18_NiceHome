@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Exceptions
 {
-    public class DuplicateEntryException:Exception
+    public class InvalidCityException:Exception
     {
-        public DuplicateEntryException(string message):base(message)
+        public InvalidCityException(string message):base(message)
         {
 
         }

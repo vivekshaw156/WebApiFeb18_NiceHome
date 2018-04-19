@@ -56,5 +56,58 @@ namespace MyNiceHome.Repository
             context.HostDetails.ToList();
             return true;
         }
+
+        /// <summary>
+        /// Method to check already Registered host
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public bool CheckIfHostExists(Host host)
+        {
+            var queryOne = (from user in context.HostDetails
+                         where user.HostEmail == host.HostEmail select user);
+            if (queryOne.ToList().Count == 1)
+            {
+                return true;
+            }
+            else
+            {
+                var queryTwo = (from user in context.HostDetails
+                                where user.HostPhone == host.HostPhone
+                                select user);
+                if(queryTwo.ToList().Count == 1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Method to check already Registered Traveller
+        /// </summary>
+        /// <param name="traveller"></param>
+        /// <returns></returns>
+        public bool CheckIfTravellerExists(Traveller traveller)
+        {
+            var queryOne = (from user in context.TravellerDetails
+                            where user.TravellerEmail == traveller.TravellerEmail
+                            select user);
+            if (queryOne.ToList().Count == 1)
+            {
+                return true;
+            }
+            else
+            {
+                var queryTwo = (from user in context.TravellerDetails
+                                where user.TravellerPhone == traveller.TravellerPhone
+                                select user);
+                if (queryTwo.ToList().Count == 1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

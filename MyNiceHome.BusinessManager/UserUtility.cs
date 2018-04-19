@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyNiceHome.Entities;
 
 namespace MyNiceHome.BusinessManager
 {
@@ -15,15 +16,13 @@ namespace MyNiceHome.BusinessManager
         {
             _repositoryUtility = repositoryUtility;
         }
-        
-        // todo - pass a host object to this method
-        public bool CreateNewHost()
+
+        public bool CreateNewHost(Host host)
         {
             throw new NotImplementedException();
         }
 
-        // todo - pass a host object to this method
-        public bool CreateNewTraveller()
+        public bool CreateNewTraveller(Traveller traveller)
         {
             throw new NotImplementedException();
         }

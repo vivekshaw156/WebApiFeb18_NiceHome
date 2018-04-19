@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNiceHome.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,13 @@ namespace MyNiceHome.Repository
     public class RepositoryMock : IRepositoryUtility
     {
         // todo - pass a host object to this method
-        public bool AddHost()
+        public bool AddHost(Host host)
         {
             throw new NotImplementedException();
         }
 
         // todo - pass a traveller object to this method
-        public bool AddTraveller()
+        public bool AddTraveller(Traveller traveller)
         {
             throw new NotImplementedException();
         }

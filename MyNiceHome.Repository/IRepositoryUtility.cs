@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyNiceHome.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,8 @@ namespace MyNiceHome.Repository
         /// Creates a new user in the database
         /// </summary>
         /// <returns></returns>
-        bool AddHost();
-        bool AddTraveller();
+        bool AddHost(Host host);
+        bool AddTraveller(Traveller traveller);
         bool GetNewConnection();
     }
 }

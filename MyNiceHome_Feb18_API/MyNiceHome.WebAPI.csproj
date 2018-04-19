@@ -301,6 +301,10 @@
       <Project>{1E929DAA-AB17-4FBC-858D-23C58E232DB3}</Project>
       <Name>MyNiceHome.BusinessManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyNiceHome.Entities\MyNiceHome.Entities.csproj">
+      <Project>{E9547194-F0CF-423E-B0C6-C543D6CC197B}</Project>
+      <Name>MyNiceHome.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyNiceHome.Repository\MyNiceHome.Repository.csproj">
       <Project>{20B914DE-F3D7-45ED-8A78-7058A8A245D3}</Project>
       <Name>MyNiceHome.Repository</Name>

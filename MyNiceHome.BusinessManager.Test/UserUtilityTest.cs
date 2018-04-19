@@ -155,6 +155,25 @@ namespace MyNiceHome.BusinessManager.Test
             var result = _userUtility.CreateNewHost(host);
         }
 
+        /// <summary>
+        /// Tests if a duplicate entry exists in the database
+        /// </summary>
+        [TestMethod]
+        // todo - expect a DuplicateEntryException
+        //[ExpectedException(typeof(DuplicateEntryException))]
+        public void UserUtility_CreateNewHost_DuplicateEntryTest()
+        {
+            Host host = new Host
+            {
+                HostName = "Rajiv Thakur",
+                HostCity = "Kolkata",
+                HostEmail = "something@domainName.com",
+                HostPhone = "9674331556",
+                HostPassword = "qwerty123"
+            };
+            var result = _userUtility.CreateNewHost(host);
+        }
+
         #endregion
 
         #region Traveller Tests
@@ -236,6 +255,25 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPassword = "123"
             };
             //todo make a valid object of an user with a wrong type of name
+            var result = _userUtility.CreateNewTraveller(traveller);
+        }
+
+        /// <summary>
+        /// Tests if a duplicate entry exists in the database
+        /// </summary>
+        [TestMethod]
+        // todo - expect a DuplicateEntryException
+        //[ExpectedException(typeof(DuplicateEntryException))]
+        public void UserUtility_CreateNewTraveller_DuplicateEntryTest()
+        {
+            Traveller traveller = new Traveller
+            {
+                TravellerName = "Rajiv Thakur",
+                TravellerCity = "Kolkata",
+                TravellerEmail = "something@domainName.com",
+                TravellerPhone = "9674331556",
+                TravellerPassword = "qwerty123"
+            };
             var result = _userUtility.CreateNewTraveller(traveller);
         }
 

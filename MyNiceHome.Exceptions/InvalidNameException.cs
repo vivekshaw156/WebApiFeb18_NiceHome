@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Exceptions
 {
-    public class InvalidName
+    public class InvalidNameException:Exception
     {
+        public InvalidNameException(string message):base(message)
+        {
+                
+        }
+
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Exceptions
 {
-    public class DuplicateEntryException:Exception
+    public class InvalidPhoneNumberException:Exception
     {
-        public DuplicateEntryException(string message):base(message)
+        public InvalidPhoneNumberException(string message):base(message)
         {
 
         }

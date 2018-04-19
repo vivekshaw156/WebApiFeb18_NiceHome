@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Exceptions
 {
-    public class DuplicateEntryException:Exception
+    public class NullEntryException:Exception
     {
-        public DuplicateEntryException(string message):base(message)
+        public NullEntryException(string message):base(message)
         {
 
         }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Exceptions
 {
-    public class DuplicateEntryException:Exception
+    public class InvalidPasswordException:Exception
     {
-        public DuplicateEntryException(string message):base(message)
+        public InvalidPasswordException(string message):base(message)
         {
-
+               
         }
     }
 }

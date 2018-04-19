@@ -1,9 +1,5 @@
 ﻿using MyNiceHome.BusinessManager.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using MyNiceHome.Entities;
 using System.Web.Http;
 
 namespace MyNiceHome_Feb18_API.Controllers
@@ -16,6 +12,11 @@ namespace MyNiceHome_Feb18_API.Controllers
         {
             _userUtility = userUtility;
         }
+
+        /// <summary>
+        /// Calling this endpoint will create a new local database if no databaase exists
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult Index()
         {
@@ -23,22 +24,40 @@ namespace MyNiceHome_Feb18_API.Controllers
             return Ok("Success");
         }
 
+        /// <summary>
+        /// API endpoint that creates a new host
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         [HttpPost]
-        // todo - pass a host object to this action
-        public IHttpActionResult CreateHost()
+        public IHttpActionResult CreateHost(Host host)
         {
-            // todo - pass a host object to this method
-            //_userUtility.CreateNewHost();
-            return Ok("Success");
+            if (_userUtility.CreateNewHost(host))
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed to signup");
+            }
         }
 
+        /// <summary>
+        /// API endpoint that creates a new traveller
+        /// </summary>
+        /// <param name="traveller"></param>
+        /// <returns></returns>
         [HttpPost]
-        // todo - pass a traveller object to this action
-        public IHttpActionResult CreateTraveller()
+        public IHttpActionResult CreateTraveller(Traveller traveller)
         {
-            // todo - pass a host object to this method
-            //_userUtility.CreateNewTraveller();
-            return Ok("Success");
+            if (_userUtility.CreateNewTraveller(traveller))
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed to signup");
+            }
         }
 
     }

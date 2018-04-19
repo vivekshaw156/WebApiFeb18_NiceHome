@@ -37,36 +37,43 @@ namespace MyNiceHome.BusinessManager
         /// <returns></returns>
         public bool CreateNewHost(Host host)
         {
-            //todo-checking null value in all the fields
+            //  var patternName = new Regex(@"/^[^-\s][a-zA-Z \s-]+$");
+           // host.HostName = (host.HostName).ToUpper();
+            var cityHost=(host.HostCity).ToUpper();
+
+            var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
+            //checking invalid entry for name field
+
+            var patternCity = new Regex(@"^[A-Z]+$");
+
+            var patternEmail = new Regex(@"^[a-zA-Z0-9](\.?[a-zA-Z0-9]){1,}@([a-zA-Z]+)\.com$");
+            var patternPhone = new Regex(@"^[0-9]*$");
+            
             if (host == null)
             {
                 throw new ArgumentNullException("host");
             }
-            var patternName = new Regex(" ^[A-Za-z] + $");
-            var patternCity = new Regex("/^([^0-9]*)$/");
-            var patternEmail = new Regex("^[_a - z0 - 9 -] + (.[a - z0 - 9 -] +)@[a - z0 - 9 -] + (.[a - z0 - 9 -] +) * (.[a - z]{ 2,4})$");
-            //checking invalid entry for name field
-            if (host.HostName == null || !patternName.IsMatch(host.HostName))
+            else if (host.HostName == null || !(patternName.Match(host.HostName).Success))
             {
                 throw new InvalidNameException("Please enter a valid name");
             }
             //checking invalid entry for city field
-            else if (host.HostCity == null || !patternCity.IsMatch(host.HostCity))
+            else if (host.HostCity == null || !(patternCity.Match(cityHost).Success))
             {
                 throw new InvalidCityException("Please enter a valid city");
             }
             //checking invalid entry for email field
-            else if (host.HostEmail == null || !patternEmail.IsMatch(host.HostEmail))
+            else if (host.HostEmail == null || !(patternEmail.Match(host.HostEmail).Success))
             {
                 throw new InvalidEmailException("Please enter a valid email");
             }
             //checking invalid entry for phone number field
-            else if (host.HostPhone == null || host.HostPhone.Length != 10 || !(host.HostPhone.Substring(0, 1).Equals(6) || host.HostPhone.Substring(0, 1).Equals(7) || host.HostPhone.Substring(0, 1).Equals(8) || host.HostPhone.Substring(0, 1).Equals(9)))
+           else if (host.HostPhone == null || host.HostPhone.Length!=10 || !(patternPhone.Match(host.HostPhone).Success))
             {
                 throw new InvalidPhoneNumberException("Please enter a valid phone number");
             }
             //checking invalid entry for password field
-            else if (host.HostPassword == null || host.HostPassword.Length < 8)
+            else if (host.HostPassword == null || host.HostPassword.Length<8)
             {
                 throw new InvalidPasswordException("Please enter a valid password");
             }
@@ -76,6 +83,14 @@ namespace MyNiceHome.BusinessManager
             }
             try
             {
+                Guid guid = Guid.NewGuid();
+                host.HID = guid.ToString();
+
+                string enteredPassword = host.HostPassword;
+                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
+                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
+                host.HostPassword = hashedPassword;
+
                 return _repositoryUtility.AddHost(host);
             }
             catch(Exception exception)
@@ -91,31 +106,36 @@ namespace MyNiceHome.BusinessManager
         /// <returns></returns>
         public bool CreateNewTraveller(Traveller traveller)
         {
-            //todo-checking null value in all the fields
+            traveller.TravellerCity = (traveller.TravellerCity).ToUpper();
+
+            var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
+            //checking invalid entry for name field
+
+            var patternCity = new Regex(@"^[A-Z]+$");
+
+            var patternEmail = new Regex(@"^[a-zA-Z0-9](\.?[a-zA-Z0-9]){1,}@([a-zA-Z]+)\.com$");
+            var patternPhone = new Regex(@"^[0-9]*$");
+
             if (traveller == null)
             {
-                throw new ArgumentNullException("traveller");
+                throw new ArgumentNullException("host");
             }
-            var patternName = new Regex(" ^[A-Za-z] + $");
-            var patternCity = new Regex("/^([^0-9]*)$/");
-            var patternEmail = new Regex("^[_a - z0 - 9 -] + (.[a - z0 - 9 -] +)@[a - z0 - 9 -] + (.[a - z0 - 9 -] +) * (.[a - z]{ 2,4})$");
-            //todo - checking null entry
-            if (traveller.TravellerName == null || !patternName.IsMatch(traveller.TravellerName))
+            else if (traveller.TravellerName == null || !(patternName.Match(traveller.TravellerName).Success))
             {
                 throw new InvalidNameException("Please enter a valid name");
             }
-            //todo - checking invalid entry for city field
-            else if (traveller.TravellerCity == null || !patternCity.IsMatch(traveller.TravellerCity))
+            //checking invalid entry for city field
+            else if (traveller.TravellerCity == null || !(patternCity.Match(traveller.TravellerCity).Success))
             {
                 throw new InvalidCityException("Please enter a valid city");
             }
-            //todo- checking invalid entry for email field
-            else if (traveller.TravellerEmail == null || !patternEmail.IsMatch(traveller.TravellerEmail))
+            //checking invalid entry for email field
+            else if (traveller.TravellerEmail == null || !(patternEmail.Match(traveller.TravellerEmail).Success))
             {
                 throw new InvalidEmailException("Please enter a valid email");
             }
-            //todo- checking invalid entry for phone number field
-            else if (traveller.TravellerPhone == null || traveller.TravellerPhone.Length != 10 || !(traveller.TravellerPhone.Substring(0, 1).Equals(6) || traveller.TravellerPhone.Substring(0, 1).Equals(7) || traveller.TravellerPhone.Substring(0, 1).Equals(8) || traveller.TravellerPhone.Substring(0, 1).Equals(9)))
+            //checking invalid entry for phone number field
+            else if (traveller.TravellerPhone == null || traveller.TravellerPhone.Length != 10 || !(patternPhone.Match(traveller.TravellerPhone).Success))
             {
                 throw new InvalidPhoneNumberException("Please enter a valid phone number");
             }
@@ -130,6 +150,14 @@ namespace MyNiceHome.BusinessManager
             }
             try
             {
+                Guid guid = Guid.NewGuid();
+                traveller.TID = guid.ToString();
+
+                string enteredPassword = traveller.TravellerPassword;
+                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
+                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
+                traveller.TravellerPassword = hashedPassword;
+
                 return _repositoryUtility.AddTraveller(traveller);
             }
             catch (Exception exception)

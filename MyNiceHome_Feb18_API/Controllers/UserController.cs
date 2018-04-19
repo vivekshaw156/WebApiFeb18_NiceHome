@@ -1,5 +1,7 @@
 ﻿using MyNiceHome.BusinessManager.Interfaces;
 using MyNiceHome.Entities;
+using System;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace MyNiceHome_Feb18_API.Controllers
@@ -46,13 +48,20 @@ namespace MyNiceHome_Feb18_API.Controllers
         [HttpPost]
         public IHttpActionResult CreateHost(Host host)
         {
-            if (_userUtility.CreateNewHost(host))
+            try
             {
-                return Ok("Success");
+                if (_userUtility.CreateNewHost(host))
+                {
+                    return Ok("Success");
+                }
+                else
+                {
+                    return BadRequest("Failed to signup");
+                }
             }
-            else
+            catch
             {
-                return BadRequest("Failed to signup");
+                return BadRequest("Failed to signup"); 
             }
         }
 

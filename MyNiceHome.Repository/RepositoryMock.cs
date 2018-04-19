@@ -32,7 +32,7 @@ namespace MyNiceHome.Repository
                 HostPhone = "9674331556",
                 HostPassword = "qwerty123"
             };
-            if (host.Equals(mockHost))
+            if (host.HostEmail.Equals(mockHost.HostEmail)&& host.HostPhone.Equals(mockHost.HostPhone))
                 return true;
             return false;
         }
@@ -46,7 +46,7 @@ namespace MyNiceHome.Repository
                 TravellerPhone = "9674331556",
                 TravellerPassword = "qwerty123"
             };
-            if (traveller.Equals(mockTraveller))
+            if (traveller.TravellerEmail.Equals(mockTraveller.TravellerEmail) && traveller.TravellerPhone.Equals(mockTraveller.TravellerPhone))
                 return true;
             return false;
         }

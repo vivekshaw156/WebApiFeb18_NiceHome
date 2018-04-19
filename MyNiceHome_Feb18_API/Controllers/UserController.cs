@@ -4,10 +4,20 @@ using System.Web.Http;
 
 namespace MyNiceHome_Feb18_API.Controllers
 {
+    /// <summary>
+    /// UserController Class
+    /// </summary>
     public class UserController : ApiController
     {
+        /// <summary>
+        /// ReadOnly Reference for IUserUtility Interface
+        /// </summary>
         private readonly IUserUtility _userUtility;
         
+        /// <summary>
+        /// Constructor for UserController Class
+        /// </summary>
+        /// <param name="userUtility"></param>
         public UserController(IUserUtility userUtility)
         {
             _userUtility = userUtility;

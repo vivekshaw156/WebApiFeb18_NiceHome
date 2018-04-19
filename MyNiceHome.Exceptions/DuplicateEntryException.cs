@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Exceptions
 {
-   public class DuplicateEntryException
+    public class DuplicateEntryException:Exception
     {
+        public DuplicateEntryException(string message):base(message)
+        {
+
+        }
     }
 }

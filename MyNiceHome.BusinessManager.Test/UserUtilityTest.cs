@@ -113,6 +113,24 @@ namespace MyNiceHome.BusinessManager.Test
         }
 
         /// <summary>
+        /// Tests if city is invalid
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidEmailException))]
+        public void UserUtility_CreateNewHost_InvalidEmailTest()
+        {
+            Host host = new Host
+            {
+                HostName = "Rajiv Kumar",
+                HostCity = "Kolkata99",
+                HostEmail = "......@do...mainName.com",
+                HostPhone = "9674331234",
+                HostPassword = "password123"
+            };
+            var result = _userUtility.CreateNewHost(host);
+        }
+
+        /// <summary>
         /// Tests if phone number is invalid
         /// </summary>
         [TestMethod]
@@ -200,6 +218,24 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerName = "Rajiv Kumar",
                 TravellerCity = "Kolkata123",
                 TravellerEmail = "something@domainName.com",
+                TravellerPhone = "9674331234",
+                TravellerPassword = "password123"
+            };
+            var result = _userUtility.CreateNewTraveller(traveller);
+        }
+
+        /// <summary>
+        /// Tests if city is invalid
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidEmailException))]
+        public void UserUtility_CreateNewTraveller_InvalidEmailTest()
+        {
+            Traveller traveller = new Traveller
+            {
+                TravellerName = "Rajiv Kumar",
+                TravellerCity = "Kolkata123",
+                TravellerEmail = ".....a..@d..omainName.com",
                 TravellerPhone = "9674331234",
                 TravellerPassword = "password123"
             };

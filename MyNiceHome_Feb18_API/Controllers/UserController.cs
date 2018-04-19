@@ -4,15 +4,26 @@ using System.Web.Http;
 
 namespace MyNiceHome_Feb18_API.Controllers
 {
+    /// <summary>
+    /// UserController Class
+    /// </summary>
     public class UserController : ApiController
     {
+        /// <summary>
+        /// ReadOnly Reference for IUserUtility Interface
+        /// </summary>
         private readonly IUserUtility _userUtility;
         
+        /// <summary>
+        /// Constructor for UserController Class
+        /// </summary>
+        /// <param name="userUtility"></param>
         public UserController(IUserUtility userUtility)
         {
             _userUtility = userUtility;
         }
 
+        #region HttpGet Methods
         /// <summary>
         /// Calling this endpoint will create a new local database if no databaase exists
         /// </summary>
@@ -23,6 +34,9 @@ namespace MyNiceHome_Feb18_API.Controllers
             _userUtility.GetConnection();
             return Ok("Success");
         }
+        #endregion
+
+        #region HttpPost Methods
 
         /// <summary>
         /// API endpoint that creates a new host
@@ -59,6 +73,6 @@ namespace MyNiceHome_Feb18_API.Controllers
                 return BadRequest("Failed to signup");
             }
         }
-
+        #endregion
     }
 }

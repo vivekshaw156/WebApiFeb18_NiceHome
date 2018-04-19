@@ -49,10 +49,10 @@
   <ItemGroup>
     <Compile Include="DuplicateEntryException.cs" />
     <Compile Include="InvalidCityException.cs" />
+    <Compile Include="InvalidEmailException.cs" />
     <Compile Include="InvalidNameException.cs" />
     <Compile Include="InvalidPasswordException.cs" />
     <Compile Include="InvalidPhoneNumberException.cs" />
-    <Compile Include="NullEntryException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Exceptions
 {
-    public class NullEntryException:Exception
+    public class InvalidEmailException:Exception
     {
-        public NullEntryException(string message):base(message)
+        public InvalidEmailException(string message):base(message)
         {
 
         }

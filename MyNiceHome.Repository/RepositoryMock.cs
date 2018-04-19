@@ -1,9 +1,5 @@
 ﻿using MyNiceHome.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyNiceHome.Repository
 {
@@ -12,29 +8,47 @@ namespace MyNiceHome.Repository
     /// </summary>
     public class RepositoryMock : IRepositoryUtility
     {
-        // todo - pass a host object to this method
         public bool AddHost(Host host)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        // todo - pass a traveller object to this method
         public bool AddTraveller(Traveller traveller)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool GetNewConnection()
         {
-            return true;
+            throw new NotImplementedException();
         }
         public bool CheckIfHostExists(Host host)
         {
-            return true;
+            Host mockHost = new Host
+            {
+                HostName = "Rajiv Thakur",
+                HostCity = "Kolkata",
+                HostEmail = "something@domainName.com",
+                HostPhone = "9674331556",
+                HostPassword = "qwerty123"
+            };
+            if (host.Equals(mockHost))
+                return true;
+            return false;
         }
         public bool CheckIfTravellerExists(Traveller traveller)
         {
-            return true;
+            Traveller mockTraveller = new Traveller
+            {
+                TravellerName = "Rajiv Thakur",
+                TravellerCity = "Kolkata",
+                TravellerEmail = "something@domainName.com",
+                TravellerPhone = "9674331556",
+                TravellerPassword = "qwerty123"
+            };
+            if (traveller.Equals(mockTraveller))
+                return true;
+            return false;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace MyNiceHome.BusinessManager
             {
                 if (_repositoryUtility.AddHost(host))
                 {
-                    //todo send message for successful host aadition in Database
+                    //todo send message for successful host addition in Database
                 }
                 else
                 {
@@ -62,13 +62,13 @@ namespace MyNiceHome.BusinessManager
         {
             if (_repositoryUtility.CheckIfTravellerExists(traveller))
             {
-                // todo throw an exception for already registered host
+                // todo throw an exception for already registered traveller
             }
             else
             {
                 if (_repositoryUtility.AddTraveller(traveller))
                 {
-                    //todo send message for successful host aadition in Database
+                    //todo send message for successful traveller addition in Database
                 }
                 else
                 {

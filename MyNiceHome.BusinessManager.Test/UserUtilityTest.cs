@@ -3,6 +3,7 @@ using MyNiceHome.BusinessManager.Interfaces;
 using MyNiceHome.Repository;
 using MyNiceHome.Entities;
 using MyNiceHome.Exceptions;
+using System;
 
 namespace MyNiceHome.BusinessManager.Test
 {
@@ -35,7 +36,7 @@ namespace MyNiceHome.BusinessManager.Test
         {
             Host host = new Host
             {
-                HostName = "Rajiv Kumar",
+                HostName = "Rahul Kumar",
                 HostCity = "Kolkata",
                 HostEmail = "something@domainName.com",
                 HostPhone = "9674331234",
@@ -57,7 +58,7 @@ namespace MyNiceHome.BusinessManager.Test
         {
             Traveller traveller = new Traveller
             {
-                TravellerName = "Rajiv Kumar",
+                TravellerName = "Rahul Kumar",
                 TravellerCity = "Kolkata",
                 TravellerEmail = "something@domainName.com",
                 TravellerPhone = "9674331234",
@@ -122,7 +123,7 @@ namespace MyNiceHome.BusinessManager.Test
             Host host = new Host
             {
                 HostName = "Rajiv Kumar",
-                HostCity = "Kolkata99",
+                HostCity = "Kolkata",
                 HostEmail = "......@do...mainName.com",
                 HostPhone = "9674331234",
                 HostPassword = "password123"
@@ -234,7 +235,7 @@ namespace MyNiceHome.BusinessManager.Test
             Traveller traveller = new Traveller
             {
                 TravellerName = "Rajiv Kumar",
-                TravellerCity = "Kolkata123",
+                TravellerCity = "Kolkata",
                 TravellerEmail = ".....a..@d..omainName.com",
                 TravellerPhone = "9674331234",
                 TravellerPassword = "password123"
@@ -309,7 +310,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// </summary>
         [TestMethod]
         // todo - expect a NullArgumentException
-        //[ExpectedException(typeof(NullArgumentException))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void UserUtility_CreateNewHost_NullUserTest()
         {
             //todo make a valid object of an user with a wrong type of name
@@ -320,7 +321,7 @@ namespace MyNiceHome.BusinessManager.Test
         #region Traveller Test
         [TestMethod]
         // todo - expect a NullArgumentException
-        //[ExpectedException(typeof(NullArgumentException))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void UserUtility_CreateNewTraveller_NullUserTest()
         {
             //todo make a valid object of an user with a wrong type of name

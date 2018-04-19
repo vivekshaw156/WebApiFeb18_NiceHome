@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyNiceHome.Entities;
+using System.Text.RegularExpressions;
+using MyNiceHome.Exceptions;
 
 namespace MyNiceHome.BusinessManager
 {
@@ -35,22 +37,51 @@ namespace MyNiceHome.BusinessManager
         /// <returns></returns>
         public bool CreateNewHost(Host host)
         {
-            if (_repositoryUtility.CheckIfHostExists(host))
+            //todo-checking null value in all the fields
+            if (host == null)
             {
-                // todo throw an exception for already registered host
+                throw new ArgumentNullException("host");
             }
-            else
+            var patternName = new Regex(" ^[A-Za-z] + $");
+            var patternCity = new Regex("/^([^0-9]*)$/");
+            var patternEmail = new Regex("^[_a - z0 - 9 -] + (.[a - z0 - 9 -] +)@[a - z0 - 9 -] + (.[a - z0 - 9 -] +) * (.[a - z]{ 2,4})$");
+            //checking invalid entry for name field
+            if (host.HostName == null || !patternName.IsMatch(host.HostName))
             {
-                if (_repositoryUtility.AddHost(host))
-                {
-                    //todo send message for successful host addition in Database
-                }
-                else
-                {
-                    //todo throw exception for not adding in Database
-                }
+                throw new InvalidNameException("Please enter a valid name");
             }
-            return true;
+            //checking invalid entry for city field
+            else if (host.HostCity == null || !patternCity.IsMatch(host.HostCity))
+            {
+                throw new InvalidCityException("Please enter a valid city");
+            }
+            //checking invalid entry for email field
+            else if (host.HostEmail == null || !patternEmail.IsMatch(host.HostEmail))
+            {
+                throw new InvalidEmailException("Please enter a valid email");
+            }
+            //checking invalid entry for phone number field
+            else if (host.HostPhone == null || host.HostPhone.Length != 10 || !(host.HostPhone.Substring(0, 1).Equals(6) || host.HostPhone.Substring(0, 1).Equals(7) || host.HostPhone.Substring(0, 1).Equals(8) || host.HostPhone.Substring(0, 1).Equals(9)))
+            {
+                throw new InvalidPhoneNumberException("Please enter a valid phone number");
+            }
+            //checking invalid entry for password field
+            else if (host.HostPassword == null || host.HostPassword.Length < 8)
+            {
+                throw new InvalidPasswordException("Please enter a valid password");
+            }
+            else if(_repositoryUtility.CheckIfHostExists(host))
+            {
+                throw new DuplicateEntryException("Host already exists"); 
+            }
+            try
+            {
+                return _repositoryUtility.AddHost(host);
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
         }
 
         /// <summary>
@@ -60,22 +91,51 @@ namespace MyNiceHome.BusinessManager
         /// <returns></returns>
         public bool CreateNewTraveller(Traveller traveller)
         {
-            if (_repositoryUtility.CheckIfTravellerExists(traveller))
+            //todo-checking null value in all the fields
+            if (traveller == null)
             {
-                // todo throw an exception for already registered traveller
+                throw new ArgumentNullException("traveller");
             }
-            else
+            var patternName = new Regex(" ^[A-Za-z] + $");
+            var patternCity = new Regex("/^([^0-9]*)$/");
+            var patternEmail = new Regex("^[_a - z0 - 9 -] + (.[a - z0 - 9 -] +)@[a - z0 - 9 -] + (.[a - z0 - 9 -] +) * (.[a - z]{ 2,4})$");
+            //todo - checking null entry
+            if (traveller.TravellerName == null || !patternName.IsMatch(traveller.TravellerName))
             {
-                if (_repositoryUtility.AddTraveller(traveller))
-                {
-                    //todo send message for successful traveller addition in Database
-                }
-                else
-                {
-                    //todo throw exception for not adding in Database
-                }
+                throw new InvalidNameException("Please enter a valid name");
             }
-            return true;
+            //todo - checking invalid entry for city field
+            else if (traveller.TravellerCity == null || !patternCity.IsMatch(traveller.TravellerCity))
+            {
+                throw new InvalidCityException("Please enter a valid city");
+            }
+            //todo- checking invalid entry for email field
+            else if (traveller.TravellerEmail == null || !patternEmail.IsMatch(traveller.TravellerEmail))
+            {
+                throw new InvalidEmailException("Please enter a valid email");
+            }
+            //todo- checking invalid entry for phone number field
+            else if (traveller.TravellerPhone == null || traveller.TravellerPhone.Length != 10 || !(traveller.TravellerPhone.Substring(0, 1).Equals(6) || traveller.TravellerPhone.Substring(0, 1).Equals(7) || traveller.TravellerPhone.Substring(0, 1).Equals(8) || traveller.TravellerPhone.Substring(0, 1).Equals(9)))
+            {
+                throw new InvalidPhoneNumberException("Please enter a valid phone number");
+            }
+            //todo- checking invalid entry for password field
+            else if (traveller.TravellerPassword == null || traveller.TravellerPassword.Length < 8)
+            {
+                throw new InvalidPasswordException("Please enter a valid password");
+            }
+            else if (_repositoryUtility.CheckIfTravellerExists(traveller))
+            {
+                throw new DuplicateEntryException("Traveller already exists");
+            }
+            try
+            {
+                return _repositoryUtility.AddTraveller(traveller);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         /// <summary>

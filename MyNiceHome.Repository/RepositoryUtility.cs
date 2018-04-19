@@ -7,22 +7,50 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Repository
 {
+    /// <summary>
+    /// RepositoryUtility Class
+    /// </summary>
     public class RepositoryUtility:IRepositoryUtility
     {
-        MyNiceHomeContext context = new MyNiceHomeContext();
+        /// <summary>
+        /// Reference for MyNiceHomeContext Class
+        /// </summary>
+        MyNiceHomeContext context;
+
+        /// <summary>
+        /// Constructor of RepositoryUtility Class
+        /// </summary>
+        public RepositoryUtility()
+        {
+            context = new MyNiceHomeContext();
+        }
         
-        // todo - pass a host object to this method
+        /// <summary>
+        /// Adding Host Details in Database
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         public bool AddHost(Host host)
         {
-            throw new NotImplementedException();
+            context.HostDetails.Add(host);
+            return (context.SaveChanges() > 0) ? true : false;
         }
 
-        // todo - pass a traveller object to this method
+        /// <summary>
+        /// Adding Traveller Details in Database
+        /// </summary>
+        /// <param name="traveller"></param>
+        /// <returns></returns>
         public bool AddTraveller(Traveller traveller)
         {
-            throw new NotImplementedException();
+            context.TravellerDetails.Add(traveller);
+            return (context.SaveChanges() > 0) ? true : false;
         }
 
+        /// <summary>
+        /// Creating the Database
+        /// </summary>
+        /// <returns></returns>
         public bool GetNewConnection()
         {
             context.HostDetails.ToList();

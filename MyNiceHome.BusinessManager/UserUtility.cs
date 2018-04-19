@@ -83,6 +83,14 @@ namespace MyNiceHome.BusinessManager
             }
             try
             {
+                Guid guid = Guid.NewGuid();
+                host.HID = guid.ToString();
+
+                string enteredPassword = host.HostPassword;
+                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
+                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
+                host.HostPassword = hashedPassword;
+
                 return _repositoryUtility.AddHost(host);
             }
             catch(Exception exception)
@@ -142,6 +150,14 @@ namespace MyNiceHome.BusinessManager
             }
             try
             {
+                Guid guid = Guid.NewGuid();
+                traveller.TID = guid.ToString();
+
+                string enteredPassword = traveller.TravellerPassword;
+                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
+                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
+                traveller.TravellerPassword = hashedPassword;
+
                 return _repositoryUtility.AddTraveller(traveller);
             }
             catch (Exception exception)

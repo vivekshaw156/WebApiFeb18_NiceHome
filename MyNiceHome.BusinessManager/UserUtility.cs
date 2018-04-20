@@ -35,8 +35,9 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        public bool CreateNewHost(Host host)
+        public Task<bool> CreateNewHost(Host host)
         {
+            OperationResult operationresult = new OperationResult();
             //  var patternName = new Regex(@"/^[^-\s][a-zA-Z \s-]+$");
            // host.HostName = (host.HostName).ToUpper();
             var cityHost=(host.HostCity).ToUpper();
@@ -52,34 +53,55 @@ namespace MyNiceHome.BusinessManager
             if (host == null)
             {
                 throw new ArgumentNullException("host");
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "host";
             }
             else if (host.HostName == null || !(patternName.Match(host.HostName).Success))
             {
-                throw new InvalidNameException("Please enter a valid name");
+                  throw new InvalidNameException("Please enter a valid name");
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "Please enter a valid name";
             }
             //checking invalid entry for city field
             else if (host.HostCity == null || !(patternCity.Match(cityHost).Success))
             {
-                throw new InvalidCityException("Please enter a valid city");
+                // throw new InvalidCityException("Please enter a valid city");
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "Please enter a valid city";
             }
             //checking invalid entry for email field
             else if (host.HostEmail == null || !(patternEmail.Match(host.HostEmail).Success))
             {
-                throw new InvalidEmailException("Please enter a valid email");
+                // throw new InvalidEmailException("Please enter a valid email");
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "Please enter a valid email";
             }
             //checking invalid entry for phone number field
            else if (host.HostPhone == null || host.HostPhone.Length!=10 || !(patternPhone.Match(host.HostPhone).Success))
             {
-                throw new InvalidPhoneNumberException("Please enter a valid phone number");
+                //throw new InvalidPhoneNumberException("Please enter a valid phone number");
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "Please enter a valid phone number";
             }
             //checking invalid entry for password field
             else if (host.HostPassword == null || host.HostPassword.Length<8)
             {
-                throw new InvalidPasswordException("Please enter a valid password");
+                //throw new InvalidPasswordException("Please enter a valid password");
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "Please enter a valid password";
             }
             else if(_repositoryUtility.CheckIfHostExists(host))
             {
-                throw new DuplicateEntryException("Host already exists"); 
+                //throw new DuplicateEntryException("Host already exists"); 
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "Host already exists";
             }
             try
             {
@@ -91,11 +113,14 @@ namespace MyNiceHome.BusinessManager
                 string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
                 host.HostPassword = hashedPassword;
 
-                return _repositoryUtility.AddHost(host);
+                return Task.FromResult(_repositoryUtility.AddHost(host));
             }
             catch(Exception exception)
             {
                 throw exception;
+                //operationresult.Status = false;
+                //operationresult.StatusCode = 204;
+                //operationresult.Message = "Host's signup failed";
             }
         }
 
@@ -104,7 +129,7 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        public bool CreateNewTraveller(Traveller traveller)
+        public Task<bool> CreateNewTraveller(Traveller traveller)
         {
             traveller.TravellerCity = (traveller.TravellerCity).ToUpper();
 
@@ -158,7 +183,7 @@ namespace MyNiceHome.BusinessManager
                 string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
                 traveller.TravellerPassword = hashedPassword;
 
-                return _repositoryUtility.AddTraveller(traveller);
+                return Task.FromResult(_repositoryUtility.AddTraveller(traveller));
             }
             catch (Exception exception)
             {

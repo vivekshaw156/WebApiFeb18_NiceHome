@@ -17,14 +17,14 @@ namespace MyNiceHome.BusinessManager.Interfaces
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        bool CreateNewHost(Host host);
+        Task<bool> CreateNewHost(Host host);
 
         /// <summary>
         /// UnImplemented method for Sending Traveller details to Repository
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        bool CreateNewTraveller(Traveller traveller);
+        Task<bool> CreateNewTraveller(Traveller traveller);
 
         /// <summary>
         /// UnImplemented method for Creating New Connection 

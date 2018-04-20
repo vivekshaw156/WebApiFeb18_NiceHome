@@ -35,7 +35,7 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        public bool CreateNewHost(Host host)
+        public Task<bool> CreateNewHost(Host host)
         {
             //  var patternName = new Regex(@"/^[^-\s][a-zA-Z \s-]+$");
            // host.HostName = (host.HostName).ToUpper();
@@ -91,7 +91,7 @@ namespace MyNiceHome.BusinessManager
                 string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
                 host.HostPassword = hashedPassword;
 
-                return _repositoryUtility.AddHost(host);
+                return Task.FromResult(_repositoryUtility.AddHost(host));
             }
             catch(Exception exception)
             {
@@ -104,7 +104,7 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        public bool CreateNewTraveller(Traveller traveller)
+        public Task<bool> CreateNewTraveller(Traveller traveller)
         {
             traveller.TravellerCity = (traveller.TravellerCity).ToUpper();
 
@@ -158,7 +158,7 @@ namespace MyNiceHome.BusinessManager
                 string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
                 traveller.TravellerPassword = hashedPassword;
 
-                return _repositoryUtility.AddTraveller(traveller);
+                return Task.FromResult(_repositoryUtility.AddTraveller(traveller));
             }
             catch (Exception exception)
             {

@@ -130,18 +130,81 @@ namespace MyNiceHome_Feb18_API.Controllers
         }
 
         [HttpPost]
-        public OperationResult HostLogin(string email, string password)
+        public async Task<OperationResult> HostLogin(string email, string password)
         {
-            OperationResult operationResult = new OperationResult();
-            bool result = _userUtility.HostLoginAccess(email, password);
-            return operationResult;
+            try
+            {
+                bool result = await _userUtility.HostLoginAccess(email, password);
+                if (result)
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Success",
+                        Status = true,
+                        StatusCode = 201
+                    };
+                    return operationResult;
+                }
+                else
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Failure",
+                        Status = false,
+                        StatusCode = 400
+                    };
+                    return operationResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                OperationResult operationResult = new OperationResult()
+                {
+                    Message = exception.Message,
+                    Status = false,
+                    StatusCode = 400
+                };
+                return operationResult;
+            }
         }
+
         [HttpPost]
-        public OperationResult TravellerLogin(string email, string password)
+        public async Task<OperationResult> TravellerLogin(string email, string password)
         {
-            OperationResult operationResult = new OperationResult();
-            bool result = _userUtility.TravellerLoginAccess(email, password);
-            return operationResult;
+            try
+            {
+                bool result = await _userUtility.TravellerLoginAccess(email, password);
+                if (result)
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Success",
+                        Status = true,
+                        StatusCode = 201
+                    };
+                    return operationResult;
+                }
+                else
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Failure",
+                        Status = false,
+                        StatusCode = 400
+                    };
+                    return operationResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                OperationResult operationResult = new OperationResult()
+                {
+                    Message = exception.Message,
+                    Status = false,
+                    StatusCode = 400
+                };
+                return operationResult;
+            }
         }
         #endregion
     }

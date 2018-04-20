@@ -2,6 +2,7 @@
 using MyNiceHome.Entities;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace MyNiceHome_Feb18_API.Controllers
@@ -15,7 +16,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// ReadOnly Reference for IUserUtility Interface
         /// </summary>
         private readonly IUserUtility _userUtility;
-
+        
         /// <summary>
         /// Constructor for UserController Class
         /// </summary>
@@ -46,22 +47,41 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// <param name="host"></param>
         /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult CreateHost(Host host)
+        public async Task<OperationResult> CreateHost(Host host)
         {
             try
             {
-                if (_userUtility.CreateNewHost(host))
+                bool result = await _userUtility.CreateNewHost(host);
+                if (result)
                 {
-                    return Ok("Success");
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Success",
+                        Status = true,
+                        StatusCode = 201
+                    };
+                    return operationResult;
                 }
                 else
                 {
-                    return BadRequest("Failed to signup");
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Failure",
+                        Status = false,
+                        StatusCode = 400
+                    };
+                    return operationResult;
                 }
             }
-            catch
+            catch(Exception exception)
             {
-                return BadRequest("Failed to signup");
+                OperationResult operationResult = new OperationResult()
+                {
+                    Message =exception.Message,
+                    Status=false,
+                    StatusCode=400
+                };
+                return operationResult;
             }
         }
 
@@ -71,15 +91,41 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// <param name="traveller"></param>
         /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult CreateTraveller(Traveller traveller)
+        public async Task<OperationResult> CreateTraveller(Traveller traveller)
         {
-            if (_userUtility.CreateNewTraveller(traveller))
+            try
             {
-                return Ok("Success");
+                bool result = await _userUtility.CreateNewTraveller(traveller);
+                if (result)
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Success",
+                        Status = true,
+                        StatusCode = 201
+                    };
+                    return operationResult;
+                }
+                else
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Failure",
+                        Status = false,
+                        StatusCode = 400
+                    };
+                    return operationResult;
+                }
             }
-            else
+            catch (Exception exception)
             {
-                return BadRequest("Failed to signup");
+                OperationResult operationResult = new OperationResult()
+                {
+                    Message = exception.Message,
+                    Status = false,
+                    StatusCode = 400
+                };
+                return operationResult;
             }
         }
         #endregion

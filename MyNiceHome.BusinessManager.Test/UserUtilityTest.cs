@@ -32,7 +32,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests for creating a valid host
         /// </summary>
         [TestMethod]
-        public void UserUtility_CreateNewHost_ValidTest()
+        public async void UserUtility_CreateNewHost_ValidTest()
         {
             Host host = new Host
             {
@@ -43,7 +43,7 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPassword = "password123"
             };
 
-            var result = _userUtility.CreateNewHost(host);
+            var result = await _userUtility.CreateNewHost(host);
 
             Assert.IsTrue(result);
         }
@@ -54,7 +54,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests for creating a valid traveller
         /// </summary>
         [TestMethod]
-        public void UserUtility_CreateNewTraveller_ValidTest()
+        public async void UserUtility_CreateNewTraveller_ValidTest()
         {
             Traveller traveller = new Traveller
             {
@@ -65,7 +65,7 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPassword = "password123"
             };
 
-            var result = _userUtility.CreateNewTraveller(traveller);
+            var result = await _userUtility.CreateNewTraveller(traveller);
 
             Assert.IsTrue(result);
         }

@@ -8,8 +8,8 @@ namespace MyNiceHome.Entities
 {
     public class OperationResult
     {
-        public bool Status { get; set; }
         public int StatusCode { get; set; }
-        public string Message { get; set; }
+        public String  Message { get; set; }
+        public bool Status { get; set; }
     }
 }

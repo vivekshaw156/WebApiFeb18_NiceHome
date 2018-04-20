@@ -109,5 +109,28 @@ namespace MyNiceHome.Repository
             }
             return false;
         }
+        /// <summary>
+        /// Check for Valid Host Login in Database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool IsValidHostLogin(string email, string password)
+        {
+            //todo check if host exists in database
+            return true;
+        }
+
+        /// <summary>
+        /// Check for valid Traveller Login in Database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool IsValidTravellerLogin(string email, string password)
+        {
+            //todo check if traveller exists in database
+            return true;
+        }
     }
 }

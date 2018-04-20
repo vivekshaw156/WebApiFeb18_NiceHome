@@ -16,7 +16,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// ReadOnly Reference for IUserUtility Interface
         /// </summary>
         private readonly IUserUtility _userUtility;
-        
+
         /// <summary>
         /// Constructor for UserController Class
         /// </summary>
@@ -73,13 +73,13 @@ namespace MyNiceHome_Feb18_API.Controllers
                     return operationResult;
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 OperationResult operationResult = new OperationResult()
                 {
-                    Message =exception.Message,
-                    Status=false,
-                    StatusCode=400
+                    Message = exception.Message,
+                    Status = false,
+                    StatusCode = 400
                 };
                 return operationResult;
             }
@@ -128,6 +128,22 @@ namespace MyNiceHome_Feb18_API.Controllers
                 return operationResult;
             }
         }
+
+        [HttpPost]
+        public OperationResult HostLogin(string email, string password)
+        {
+            OperationResult operationResult = new OperationResult();
+            bool result = _userUtility.HostLoginAccess(email, password);
+            return operationResult;
+        }
+        [HttpPost]
+        public OperationResult TravellerLogin(string email, string password)
+        {
+            OperationResult operationResult = new OperationResult();
+            bool result = _userUtility.TravellerLoginAccess(email, password);
+            return operationResult;
+        }
         #endregion
     }
 }
+

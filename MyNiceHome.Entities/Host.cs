@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// Host Entity
+    /// </summary>
     public class Host
     {
         [Key]

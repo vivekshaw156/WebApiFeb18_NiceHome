@@ -31,5 +31,21 @@ namespace MyNiceHome.BusinessManager.Interfaces
         /// </summary>
         /// <returns></returns>
         bool GetConnection();
+
+        /// <summary>
+        /// UnImplemented Method for Checking Business Logic for Host
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        bool HostLoginAccess(string email, string password);
+
+        /// <summary>
+        ///  UnImplemented Method for Checking Business Logic for Traveller
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        bool TravellerLoginAccess(string email, string password);
     }
 }

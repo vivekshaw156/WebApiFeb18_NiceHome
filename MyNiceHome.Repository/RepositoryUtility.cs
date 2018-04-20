@@ -24,7 +24,7 @@ namespace MyNiceHome.Repository
         {
             context = new MyNiceHomeContext();
         }
-        
+
         /// <summary>
         /// Adding Host Details in Database
         /// </summary>
@@ -65,7 +65,7 @@ namespace MyNiceHome.Repository
         public bool CheckIfHostExists(Host host)
         {
             var queryOne = (from user in context.HostDetails
-                         where user.HostEmail == host.HostEmail select user);
+                            where user.HostEmail == host.HostEmail select user);
             if (queryOne.ToList().Count == 1)
             {
                 return true;

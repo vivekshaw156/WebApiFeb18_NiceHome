@@ -15,7 +15,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// ReadOnly Reference for IUserUtility Interface
         /// </summary>
         private readonly IUserUtility _userUtility;
-        
+
         /// <summary>
         /// Constructor for UserController Class
         /// </summary>
@@ -61,7 +61,7 @@ namespace MyNiceHome_Feb18_API.Controllers
             }
             catch
             {
-                return BadRequest("Failed to signup"); 
+                return BadRequest("Failed to signup");
             }
         }
 

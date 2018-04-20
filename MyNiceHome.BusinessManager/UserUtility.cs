@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MyNiceHome.Entities;
 using System.Text.RegularExpressions;
 using MyNiceHome.Exceptions;
+using MyNiceHome.Manager.Helpers;
 
 namespace MyNiceHome.BusinessManager
 {
@@ -20,6 +21,7 @@ namespace MyNiceHome.BusinessManager
         /// ReadOnly Reference for IRepositoryUtility Interface
         /// </summary>
         private readonly IRepositoryUtility _repositoryUtility;
+        private readonly UserUtilityHelper _userUtilityHelper;
 
         /// <summary>
         /// UserUtility Constructor
@@ -27,6 +29,7 @@ namespace MyNiceHome.BusinessManager
         /// <param name="repositoryUtility"></param>
         public UserUtility(IRepositoryUtility repositoryUtility)
         {
+            _userUtilityHelper = new UserUtilityHelper();
             _repositoryUtility = repositoryUtility;
         }
 
@@ -105,13 +108,10 @@ namespace MyNiceHome.BusinessManager
             }
             try
             {
-                Guid guid = Guid.NewGuid();
-                host.HID = guid.ToString();
+                host.HID = _userUtilityHelper.GenerateGuid();
 
                 string enteredPassword = host.HostPassword;
-                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
-                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
-                host.HostPassword = hashedPassword;
+                host.HostPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
 
                 return _repositoryUtility.AddHost(host);
             }
@@ -175,13 +175,10 @@ namespace MyNiceHome.BusinessManager
             }
             try
             {
-                Guid guid = Guid.NewGuid();
-                traveller.TID = guid.ToString();
+                traveller.TID = _userUtilityHelper.GenerateGuid();
 
                 string enteredPassword = traveller.TravellerPassword;
-                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
-                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
-                traveller.TravellerPassword = hashedPassword;
+                traveller.TravellerPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
 
                 return _repositoryUtility.AddTraveller(traveller);
             }

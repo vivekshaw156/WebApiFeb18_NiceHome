@@ -52,7 +52,7 @@ namespace MyNiceHome.BusinessManager
 
             if (host == null)
             {
-                throw new ArgumentNullException("host");
+                throw new NullReferenceException("host");
             }
             else if (host.HostName == null || !(patternName.Match(host.HostName).Success))
             {
@@ -157,10 +157,19 @@ namespace MyNiceHome.BusinessManager
         //todo check business logic for valid host
         public Task<bool> HostLoginAccess(string email, string password)
         {
-            if(email==null || password==null)
+            //checking null Object
+            if (email == null && password == null)
+            {
+                throw new NullReferenceException("host");
+            }
+
+            //checking null fields
+            if (email==null || password==null)
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");
             }
+
+         
             string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
             if(hashedPassword==null)
             {
@@ -173,6 +182,12 @@ namespace MyNiceHome.BusinessManager
         //todo check business logic for valid traveller
         public Task<bool> TravellerLoginAccess(string email, string password)
         {
+            //checking for null objects
+            if (email == null && password == null)
+            {
+                throw new NullReferenceException("Traveller");
+            }
+             //checking for null fields
             if (email == null || password == null)
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");

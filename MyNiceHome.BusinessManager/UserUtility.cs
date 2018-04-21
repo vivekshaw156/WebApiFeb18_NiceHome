@@ -157,14 +157,14 @@ namespace MyNiceHome.BusinessManager
         //todo check business logic for valid host
         public Task<bool> HostLoginAccess(string email, string password)
         {
-             return Task.FromResult(_repositoryUtility.IsValidHostLogin(email,password));
-            
+            return Task.FromResult(_repositoryUtility.IsValidHostLogin(email,password));
+
         }
 
         //todo check business logic for valid traveller
         public Task<bool> TravellerLoginAccess(string email, string password)
         {
-             return Task.FromResult(_repositoryUtility.IsValidTravellerLogin(email, password));
+            return Task.FromResult(_repositoryUtility.IsValidTravellerLogin(email, password));
         }
 
         /// <summary>

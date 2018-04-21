@@ -17,5 +17,11 @@ namespace MyNiceHome.Manager.Helpers
             string hashedPassword = BCryptHelper.HashPassword(plainTextPassword, salt);
             return hashedPassword;
         }
+
+        public bool CheckPassword(string plainTextPassword, string hashedPassword)
+        {
+            bool check = BCryptHelper.CheckPassword(plainTextPassword, hashedPassword);
+            return check;
+        }
     }
 }

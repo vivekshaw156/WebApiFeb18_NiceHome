@@ -44,5 +44,21 @@ namespace MyNiceHome.Repository
         /// <param name="traveller"></param>
         /// <returns></returns>
         bool CheckIfTravellerExists(Traveller traveller);
+
+        /// <summary>
+        /// UnImplemented Method for Checking valid host in Database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        bool IsValidHostLogin(string email, string password);
+
+        /// <summary>
+        /// UnImplemented Method for Checking valid traveller in Database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        bool IsValidTravellerLogin(string email, string password);
     }
 }

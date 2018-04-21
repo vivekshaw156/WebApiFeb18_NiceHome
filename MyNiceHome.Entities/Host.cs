@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// Host Entity
+    /// </summary>
     public class Host
     {
         [Key]
         public string HID { get; set; }
 
         public string HostName { get; set; }
+
         public string HostCity { get; set; }
 
         public string HostEmail { get; set; }

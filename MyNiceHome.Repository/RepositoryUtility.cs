@@ -24,7 +24,7 @@ namespace MyNiceHome.Repository
         {
             context = new MyNiceHomeContext();
         }
-        
+
         /// <summary>
         /// Adding Host Details in Database
         /// </summary>
@@ -65,7 +65,7 @@ namespace MyNiceHome.Repository
         public bool CheckIfHostExists(Host host)
         {
             var queryOne = (from user in context.HostDetails
-                         where user.HostEmail == host.HostEmail select user);
+                            where user.HostEmail == host.HostEmail select user);
             if (queryOne.ToList().Count == 1)
             {
                 return true;
@@ -108,6 +108,40 @@ namespace MyNiceHome.Repository
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Check for Valid Host Login in Database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool IsValidHostLogin(string email, string password)
+        {
+            var query = from host in context.HostDetails
+                        where host.HostEmail == email && host.HostPassword == password
+                        select host;
+            if (query.ToList().Count == 1)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Check for valid Traveller Login in Database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool IsValidTravellerLogin(string email, string password)
+        {
+            var query = from traveller in context.TravellerDetails
+                        where traveller.TravellerEmail == email && traveller.TravellerPassword == password
+                        select traveller;
+            if (query.ToList().Count == 1)
+                return true;
+            else
+                return false;
         }
     }
 }

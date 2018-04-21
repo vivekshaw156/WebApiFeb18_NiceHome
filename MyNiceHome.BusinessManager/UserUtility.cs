@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MyNiceHome.Entities;
 using System.Text.RegularExpressions;
 using MyNiceHome.Exceptions;
+using MyNiceHome.Manager.Helpers;
 
 namespace MyNiceHome.BusinessManager
 {
@@ -22,11 +23,17 @@ namespace MyNiceHome.BusinessManager
         private readonly IRepositoryUtility _repositoryUtility;
 
         /// <summary>
+        /// ReadOnly Reference for UserUtilityHelper Class
+        /// </summary>
+        private readonly UserUtilityHelper _userUtilityHelper;
+
+        /// <summary>
         /// UserUtility Constructor
         /// </summary>
         /// <param name="repositoryUtility"></param>
         public UserUtility(IRepositoryUtility repositoryUtility)
         {
+            _userUtilityHelper = new UserUtilityHelper();
             _repositoryUtility = repositoryUtility;
         }
 
@@ -37,90 +44,52 @@ namespace MyNiceHome.BusinessManager
         /// <returns></returns>
         public Task<bool> CreateNewHost(Host host)
         {
-            OperationResult operationresult = new OperationResult();
-            //  var patternName = new Regex(@"/^[^-\s][a-zA-Z \s-]+$");
-           // host.HostName = (host.HostName).ToUpper();
-            var cityHost=(host.HostCity).ToUpper();
-
+            var cityHost = (host.HostCity).ToUpper();
             var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
-            //checking invalid entry for name field
-
             var patternCity = new Regex(@"^[A-Z]+$");
-
             var patternEmail = new Regex(@"^[a-zA-Z0-9](\.?[a-zA-Z0-9]){1,}@([a-zA-Z]+)\.com$");
             var patternPhone = new Regex(@"^[0-9]*$");
-            
+
             if (host == null)
             {
                 throw new ArgumentNullException("host");
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "host";
             }
             else if (host.HostName == null || !(patternName.Match(host.HostName).Success))
             {
-                  throw new InvalidNameException("Please enter a valid name");
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "Please enter a valid name";
+                throw new InvalidNameException("Please enter a valid name");
             }
-            //checking invalid entry for city field
             else if (host.HostCity == null || !(patternCity.Match(cityHost).Success))
             {
-              // throw new InvalidCityException("Please enter a valid city");
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "Please enter a valid city";
+                throw new InvalidCityException("Please enter a valid city");
             }
-            //checking invalid entry for email field
             else if (host.HostEmail == null || !(patternEmail.Match(host.HostEmail).Success))
             {
-                // throw new InvalidEmailException("Please enter a valid email");
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "Please enter a valid email";
+                throw new InvalidEmailException("Please enter a valid email");
             }
-            //checking invalid entry for phone number field
-           else if (host.HostPhone == null || host.HostPhone.Length!=10 || !(patternPhone.Match(host.HostPhone).Success))
+            else if (host.HostPhone == null || host.HostPhone.Length != 10 || !(patternPhone.Match(host.HostPhone).Success))
             {
-               //throw new InvalidPhoneNumberException("Please enter a valid phone number");
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "Please enter a valid phone number";
+                throw new InvalidPhoneNumberException("Please enter a valid phone number");
             }
-            //checking invalid entry for password field
-            else if (host.HostPassword == null || host.HostPassword.Length<8)
+            else if (host.HostPassword == null || host.HostPassword.Length < 8)
             {
-              //throw new InvalidPasswordException("Please enter a valid password");
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "Please enter a valid password";
+                throw new InvalidPasswordException("Please enter a valid password");
             }
-            else if(_repositoryUtility.CheckIfHostExists(host))
+            else if (_repositoryUtility.CheckIfHostExists(host))
             {
-                //throw new DuplicateEntryException("Host already exists"); 
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "Host already exists";
+                throw new DuplicateEntryException("Host already exists");
             }
             try
             {
-                Guid guid = Guid.NewGuid();
-                host.HID = guid.ToString();
+                host.HID = _userUtilityHelper.GenerateGuid();
 
                 string enteredPassword = host.HostPassword;
-                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
-                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
-                host.HostPassword = hashedPassword;
+                host.HostPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
 
                 return Task.FromResult(_repositoryUtility.AddHost(host));
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw exception;
-                //operationresult.Status = false;
-                //operationresult.StatusCode = 204;
-                //operationresult.Message = "Host's signup failed";
             }
         }
 
@@ -134,16 +103,13 @@ namespace MyNiceHome.BusinessManager
             traveller.TravellerCity = (traveller.TravellerCity).ToUpper();
 
             var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
-            //checking invalid entry for name field
-
             var patternCity = new Regex(@"^[A-Z]+$");
-
             var patternEmail = new Regex(@"^[a-zA-Z0-9](\.?[a-zA-Z0-9]){1,}@([a-zA-Z]+)\.com$");
             var patternPhone = new Regex(@"^[0-9]*$");
 
             if (traveller == null)
             {
-                throw new ArgumentNullException("host");
+                throw new ArgumentNullException("traveller");
             }
             else if (traveller.TravellerName == null || !(patternName.Match(traveller.TravellerName).Success))
             {
@@ -164,7 +130,7 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new InvalidPhoneNumberException("Please enter a valid phone number");
             }
-            //todo- checking invalid entry for password field
+            //checking invalid entry for password field
             else if (traveller.TravellerPassword == null || traveller.TravellerPassword.Length < 8)
             {
                 throw new InvalidPasswordException("Please enter a valid password");
@@ -175,13 +141,10 @@ namespace MyNiceHome.BusinessManager
             }
             try
             {
-                Guid guid = Guid.NewGuid();
-                traveller.TID = guid.ToString();
+                traveller.TID = _userUtilityHelper.GenerateGuid();
 
                 string enteredPassword = traveller.TravellerPassword;
-                string salt = DevOne.Security.Cryptography.BCrypt.BCryptHelper.GenerateSalt();
-                string hashedPassword = DevOne.Security.Cryptography.BCrypt.BCryptHelper.HashPassword(enteredPassword, salt);
-                traveller.TravellerPassword = hashedPassword;
+                traveller.TravellerPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
 
                 return Task.FromResult(_repositoryUtility.AddTraveller(traveller));
             }
@@ -189,6 +152,19 @@ namespace MyNiceHome.BusinessManager
             {
                 throw exception;
             }
+        }
+
+        //todo check business logic for valid host
+        public Task<bool> HostLoginAccess(string email, string password)
+        {
+             return Task.FromResult(_repositoryUtility.IsValidHostLogin(email,password));
+            
+        }
+
+        //todo check business logic for valid traveller
+        public Task<bool> TravellerLoginAccess(string email, string password)
+        {
+             return Task.FromResult(_repositoryUtility.IsValidTravellerLogin(email, password));
         }
 
         /// <summary>

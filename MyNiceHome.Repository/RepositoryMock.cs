@@ -55,15 +55,20 @@ namespace MyNiceHome.Repository
 
         public string IsValidHostLogin(string email)
         {
-            //todo check if host exists in database
-            
-            return "";
+            // mock password hash for password=password123
+            if (email == "something@domainName.com")
+                return "$2a$10$DRKlSiSQgoQozgysjguJou5OoMmyhFxNW5FzvuhYOs.bhxPEVUlbq";
+            else
+                return null;
         }
 
         public string IsValidTravellerLogin(string email)
         {
-            //todo check if traveller exists in database
-            return "";
+            // mock password hash for password=password123
+            if (email == "something@domainName.com")
+                return "$2a$10$DRKlSiSQgoQozgysjguJou5OoMmyhFxNW5FzvuhYOs.bhxPEVUlbq";
+            else
+                return null;
         }
     }
 }

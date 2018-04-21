@@ -67,7 +67,7 @@ namespace MyNiceHome.BusinessManager
             //checking invalid entry for city field
             else if (host.HostCity == null || !(patternCity.Match(cityHost).Success))
             {
-                // throw new InvalidCityException("Please enter a valid city");
+              // throw new InvalidCityException("Please enter a valid city");
                 //operationresult.Status = false;
                 //operationresult.StatusCode = 204;
                 //operationresult.Message = "Please enter a valid city";
@@ -83,7 +83,7 @@ namespace MyNiceHome.BusinessManager
             //checking invalid entry for phone number field
            else if (host.HostPhone == null || host.HostPhone.Length!=10 || !(patternPhone.Match(host.HostPhone).Success))
             {
-                //throw new InvalidPhoneNumberException("Please enter a valid phone number");
+               //throw new InvalidPhoneNumberException("Please enter a valid phone number");
                 //operationresult.Status = false;
                 //operationresult.StatusCode = 204;
                 //operationresult.Message = "Please enter a valid phone number";
@@ -91,7 +91,7 @@ namespace MyNiceHome.BusinessManager
             //checking invalid entry for password field
             else if (host.HostPassword == null || host.HostPassword.Length<8)
             {
-                //throw new InvalidPasswordException("Please enter a valid password");
+              //throw new InvalidPasswordException("Please enter a valid password");
                 //operationresult.Status = false;
                 //operationresult.StatusCode = 204;
                 //operationresult.Message = "Please enter a valid password";

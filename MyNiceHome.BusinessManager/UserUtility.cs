@@ -85,6 +85,9 @@ namespace MyNiceHome.BusinessManager
                 string enteredPassword = host.HostPassword;
                 host.HostPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
 
+                host.HostName = host.HostName.ToUpper();
+                host.HostCity = host.HostCity.ToUpper();
+
                 return Task.FromResult(_repositoryUtility.AddHost(host));
             }
             catch (Exception exception)
@@ -145,6 +148,10 @@ namespace MyNiceHome.BusinessManager
 
                 string enteredPassword = traveller.TravellerPassword;
                 traveller.TravellerPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
+
+                traveller.TravellerName = traveller.TravellerName.ToUpper();
+                traveller.TravellerCity = traveller.TravellerCity.ToUpper();
+
 
                 return Task.FromResult(_repositoryUtility.AddTraveller(traveller));
             }

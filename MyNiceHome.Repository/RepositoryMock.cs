@@ -59,10 +59,10 @@ namespace MyNiceHome.Repository
             return "";
         }
 
-        public bool IsValidTravellerLogin(string email, string password)
+        public string IsValidTravellerLogin(string email)
         {
             //todo check if traveller exists in database
-            return true;
+            return "";
         }
     }
 }

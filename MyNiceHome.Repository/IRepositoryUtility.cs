@@ -59,6 +59,6 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        bool IsValidTravellerLogin(string email, string password);
+        string IsValidTravellerLogin(string email);
     }
 }

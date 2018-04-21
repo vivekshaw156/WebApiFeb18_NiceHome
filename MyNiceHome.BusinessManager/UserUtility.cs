@@ -157,21 +157,33 @@ namespace MyNiceHome.BusinessManager
         //todo check business logic for valid host
         public Task<bool> HostLoginAccess(string email, string password)
         {
+            if(email==null || password==null)
+            {
+                //throw new UserDoesNotExistException("Email or password cannot be null")
+            }
             string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
             if(hashedPassword==null)
             {
                 //throw new UserDoesNotExistException("Email not registered")
             }
-            //bool isSame = _userUtilityHelper.CheckPassword(password,hashedPassword);
-            //Task.FromResult(isSame);
-            //return false;
-            return Task.FromResult(false);
+            bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
+            return Task.FromResult(isSame);
         }
 
         //todo check business logic for valid traveller
         public Task<bool> TravellerLoginAccess(string email, string password)
         {
-             return Task.FromResult(_repositoryUtility.IsValidTravellerLogin(email, password));
+            if (email == null || password == null)
+            {
+                //throw new UserDoesNotExistException("Email or password cannot be null")
+            }
+            string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
+            if (hashedPassword == null)
+            {
+                //throw new UserDoesNotExistException("Email not registered")
+            }
+            bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
+            return Task.FromResult(isSame);
         }
 
         /// <summary>

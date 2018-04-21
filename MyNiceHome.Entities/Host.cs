@@ -16,6 +16,7 @@ namespace MyNiceHome.Entities
         public string HID { get; set; }
 
         public string HostName { get; set; }
+
         public string HostCity { get; set; }
 
         public string HostEmail { get; set; }

@@ -109,6 +109,7 @@ namespace MyNiceHome.Repository
             }
             return false;
         }
+
         /// <summary>
         /// Check for Valid Host Login in Database
         /// </summary>
@@ -117,8 +118,13 @@ namespace MyNiceHome.Repository
         /// <returns></returns>
         public bool IsValidHostLogin(string email, string password)
         {
-            //todo check if host exists in database
-            return true;
+            var query = from host in context.HostDetails
+                        where host.HostEmail == email && host.HostPassword == password
+                        select host;
+            if (query.ToList().Count == 1)
+                return true;
+            else
+                return false;
         }
 
         /// <summary>
@@ -129,8 +135,13 @@ namespace MyNiceHome.Repository
         /// <returns></returns>
         public bool IsValidTravellerLogin(string email, string password)
         {
-            //todo check if traveller exists in database
-            return true;
+            var query = from traveller in context.TravellerDetails
+                        where traveller.TravellerEmail == email && traveller.TravellerPassword == password
+                        select traveller;
+            if (query.ToList().Count == 1)
+                return true;
+            else
+                return false;
         }
     }
 }

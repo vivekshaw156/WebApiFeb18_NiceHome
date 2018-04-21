@@ -21,6 +21,10 @@ namespace MyNiceHome.BusinessManager
         /// ReadOnly Reference for IRepositoryUtility Interface
         /// </summary>
         private readonly IRepositoryUtility _repositoryUtility;
+
+        /// <summary>
+        /// ReadOnly Reference for UserUtilityHelper Class
+        /// </summary>
         private readonly UserUtilityHelper _userUtilityHelper;
 
         /// <summary>
@@ -149,6 +153,7 @@ namespace MyNiceHome.BusinessManager
                 throw exception;
             }
         }
+
         //todo check business logic for valid host
         public Task<bool> HostLoginAccess(string email, string password)
         {

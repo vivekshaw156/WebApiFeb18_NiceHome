@@ -51,7 +51,7 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        bool IsValidHostLogin(string email, string password);
+        string IsValidHostLogin(string email);
 
         /// <summary>
         /// UnImplemented Method for Checking valid traveller in Database

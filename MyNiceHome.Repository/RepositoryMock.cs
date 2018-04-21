@@ -22,6 +22,7 @@ namespace MyNiceHome.Repository
         {
             throw new NotImplementedException();
         }
+
         public bool CheckIfHostExists(Host host)
         {
             Host mockHost = new Host
@@ -36,6 +37,7 @@ namespace MyNiceHome.Repository
                 return true;
             return false;
         }
+
         public bool CheckIfTravellerExists(Traveller traveller)
         {
             Traveller mockTraveller = new Traveller
@@ -50,11 +52,13 @@ namespace MyNiceHome.Repository
                 return true;
             return false;
         }
-        public bool IsValidHostLogin(string email, string password)
+
+        public string IsValidHostLogin(string email)
         {
             //todo check if host exists in database
-            return true;
+            return "";
         }
+
         public bool IsValidTravellerLogin(string email, string password)
         {
             //todo check if traveller exists in database

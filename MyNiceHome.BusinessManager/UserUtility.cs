@@ -157,8 +157,15 @@ namespace MyNiceHome.BusinessManager
         //todo check business logic for valid host
         public Task<bool> HostLoginAccess(string email, string password)
         {
-             return Task.FromResult(_repositoryUtility.IsValidHostLogin(email,password));
-            
+            string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
+            if(hashedPassword==null)
+            {
+                //throw new UserDoesNotExistException("Email not registered")
+            }
+            //bool isSame = _userUtilityHelper.CheckPassword(password,hashedPassword);
+            //Task.FromResult(isSame);
+            //return false;
+            return Task.FromResult(false);
         }
 
         //todo check business logic for valid traveller

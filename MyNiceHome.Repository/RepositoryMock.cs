@@ -50,5 +50,15 @@ namespace MyNiceHome.Repository
                 return true;
             return false;
         }
+        public bool IsValidHostLogin(string email, string password)
+        {
+            //todo check if host exists in database
+            return true;
+        }
+        public bool IsValidTravellerLogin(string email, string password)
+        {
+            //todo check if traveller exists in database
+            return true;
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// ReadOnly Reference for IUserUtility Interface
         /// </summary>
         private readonly IUserUtility _userUtility;
-        
+
         /// <summary>
         /// Constructor for UserController Class
         /// </summary>
@@ -73,13 +73,13 @@ namespace MyNiceHome_Feb18_API.Controllers
                     return operationResult;
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 OperationResult operationResult = new OperationResult()
                 {
-                    Message =exception.Message,
-                    Status=false,
-                    StatusCode=400
+                    Message = exception.Message,
+                    Status = false,
+                    StatusCode = 400
                 };
                 return operationResult;
             }
@@ -96,6 +96,84 @@ namespace MyNiceHome_Feb18_API.Controllers
             try
             {
                 bool result = await _userUtility.CreateNewTraveller(traveller);
+                if (result)
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Success",
+                        Status = true,
+                        StatusCode = 201
+                    };
+                    return operationResult;
+                }
+                else
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Failure",
+                        Status = false,
+                        StatusCode = 400
+                    };
+                    return operationResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                OperationResult operationResult = new OperationResult()
+                {
+                    Message = exception.Message,
+                    Status = false,
+                    StatusCode = 400
+                };
+                return operationResult;
+            }
+        }
+
+        [HttpPost]
+        public async Task<OperationResult> HostLogin(string email, string password)
+        {
+            try
+            {
+                bool result = await _userUtility.HostLoginAccess(email, password);
+                if (result)
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Success",
+                        Status = true,
+                        StatusCode = 201
+                    };
+                    return operationResult;
+                }
+                else
+                {
+                    OperationResult operationResult = new OperationResult()
+                    {
+                        Message = "Failure",
+                        Status = false,
+                        StatusCode = 400
+                    };
+                    return operationResult;
+                }
+            }
+            catch (Exception exception)
+            {
+                OperationResult operationResult = new OperationResult()
+                {
+                    Message = exception.Message,
+                    Status = false,
+                    StatusCode = 400
+                };
+                return operationResult;
+            }
+        }
+
+        [HttpPost]
+        public async Task<OperationResult> TravellerLogin(string email, string password)
+        {
+            try
+            {
+                bool result = await _userUtility.TravellerLoginAccess(email, password);
                 if (result)
                 {
                     OperationResult operationResult = new OperationResult()

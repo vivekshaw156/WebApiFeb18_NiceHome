@@ -7,6 +7,9 @@ using System;
 
 namespace MyNiceHome.BusinessManager.Test
 {
+    /// <summary>
+    /// UserUtilityTest Class
+    /// </summary>
     [TestClass]
     public class UserUtilityTest
     {
@@ -32,7 +35,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests for creating a valid host
         /// </summary>
         [TestMethod]
-        public async void UserUtility_CreateNewHost_ValidTest()
+        public void UserUtility_CreateNewHost_ValidTest()
         {
             Host host = new Host
             {
@@ -43,9 +46,9 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPassword = "password123"
             };
 
-            var result = await _userUtility.CreateNewHost(host);
+            var result = _userUtility.CreateNewHost(host);
 
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.Result);
         }
         #endregion
 
@@ -54,7 +57,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests for creating a valid traveller
         /// </summary>
         [TestMethod]
-        public async void UserUtility_CreateNewTraveller_ValidTest()
+        public void UserUtility_CreateNewTraveller_ValidTest()
         {
             Traveller traveller = new Traveller
             {
@@ -65,9 +68,9 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPassword = "password123"
             };
 
-            var result = await _userUtility.CreateNewTraveller(traveller);
+            var result = _userUtility.CreateNewTraveller(traveller);
 
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.Result);
         }
         #endregion
 
@@ -100,7 +103,7 @@ namespace MyNiceHome.BusinessManager.Test
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidCityException))]
-        public void UserUtility_CreateNewHost_InvalidCityTest()
+        public  void UserUtility_CreateNewHost_InvalidCityTest()
         {
             Host host = new Host
             {

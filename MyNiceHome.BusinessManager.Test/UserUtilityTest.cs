@@ -50,6 +50,25 @@ namespace MyNiceHome.BusinessManager.Test
 
             Assert.IsTrue(result.Result);
         }
+
+        /// <summary>
+        /// Test for Login Valid Host
+        /// </summary>
+        [TestMethod]
+        public void UserUtility_HostLoginAccess_ValidUserExistTest()
+        {
+            Host host = new Host
+            {
+                HostEmail = "something@domainName.com",
+                HostPassword = "password123"
+
+            };
+            var result = _userUtility.HostLoginAccess(host.HostEmail, host.HostPassword);
+
+            Assert.IsTrue(result.Result);
+
+        }
+
         #endregion
 
         #region Traveller Tests
@@ -72,6 +91,25 @@ namespace MyNiceHome.BusinessManager.Test
 
             Assert.IsTrue(result.Result);
         }
+
+        /// <summary>
+        /// Tests for Login Valid Traveller
+        /// </summary>
+        [TestMethod]
+        public void UserUtility_TravellerLoginAccess_ValidUserExistTest()
+        {
+           Traveller traveller = new Traveller
+            {
+                TravellerEmail = "something@domainName.com",
+                TravellerPassword = "password123"
+
+            };
+            var result = _userUtility.TravellerLoginAccess(traveller.TravellerEmail, traveller.TravellerPassword);
+
+            Assert.IsTrue(result.Result);
+
+        }
+
         #endregion
 
         #endregion
@@ -188,6 +226,22 @@ namespace MyNiceHome.BusinessManager.Test
             var result = _userUtility.CreateNewHost(host);
         }
 
+        /// <summary>
+        ///  Test if User Exist in DataBase
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(UserDoesNotExistException))]
+        public void UserUtility_HostLoginAccess_InvalidUserExistTest()
+        {
+            Host host = new Host
+            {
+                HostEmail = "some@yahoo.com",
+                HostPassword = "768956435"
+            };
+
+            var result = _userUtility.HostLoginAccess(host.HostEmail, host.HostPassword);
+        }
+
         #endregion
 
         #region Traveller Tests
@@ -301,6 +355,23 @@ namespace MyNiceHome.BusinessManager.Test
             var result = _userUtility.CreateNewTraveller(traveller);
         }
 
+        /// <summary>
+        ///  Test if User Exist in DataBase
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(UserDoesNotExistException))]
+        public void UserUtility_TravellerLoginAccess_InvalidUserExistTest()
+        {
+
+            Traveller traveller = new Traveller
+            {
+                TravellerEmail = "something@yahoo.com",
+                TravellerPassword = "879657854"
+            };
+
+            var result = _userUtility.HostLoginAccess(traveller.TravellerEmail, traveller.TravellerPassword);
+        }
+
         #endregion
 
         #endregion
@@ -319,6 +390,17 @@ namespace MyNiceHome.BusinessManager.Test
             //todo make a valid object of an user with a wrong type of name
             var result = _userUtility.CreateNewHost(null);
         }
+
+
+        [TestMethod]
+        // todo- expect a NullReferenceException
+        [ExpectedException(typeof(NullReferenceException))]
+        public void UserUtility_HostLoginAccess_NullUserExistTest()
+        {
+            var result = _userUtility.HostLoginAccess(null,null);
+        }
+
+
         #endregion
 
         #region Traveller Test
@@ -330,6 +412,15 @@ namespace MyNiceHome.BusinessManager.Test
             //todo make a valid object of an user with a wrong type of name
             var result = _userUtility.CreateNewTraveller(null);
         }
+
+        [TestMethod]
+        // todo- expect a NullReferenceException
+        [ExpectedException(typeof(NullReferenceException))]
+        public void UserUtility_TravellerLoginAccess_NullUserExistTest()
+        {
+            var result = _userUtility.TravellerLoginAccess(null, null);
+        }
+
         #endregion
     }
     #endregion

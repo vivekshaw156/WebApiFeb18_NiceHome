@@ -56,6 +56,7 @@ namespace MyNiceHome.Repository
         public string IsValidHostLogin(string email)
         {
             //todo check if host exists in database
+            
             return "";
         }
 

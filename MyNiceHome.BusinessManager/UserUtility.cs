@@ -159,12 +159,12 @@ namespace MyNiceHome.BusinessManager
         {
             if(email==null || password==null)
             {
-                //throw new UserDoesNotExistException("Email or password cannot be null")
+                throw new UserDoesNotExistException("Email or password cannot be null");
             }
             string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
             if(hashedPassword==null)
             {
-                //throw new UserDoesNotExistException("Email not registered")
+                throw new UserDoesNotExistException("Email not registered");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
             return Task.FromResult(isSame);
@@ -175,12 +175,12 @@ namespace MyNiceHome.BusinessManager
         {
             if (email == null || password == null)
             {
-                //throw new UserDoesNotExistException("Email or password cannot be null")
+                throw new UserDoesNotExistException("Email or password cannot be null");
             }
             string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
             if (hashedPassword == null)
             {
-                //throw new UserDoesNotExistException("Email not registered")
+                throw new UserDoesNotExistException("Email not registered");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
             return Task.FromResult(isSame);

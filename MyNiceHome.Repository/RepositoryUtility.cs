@@ -116,15 +116,13 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool IsValidHostLogin(string email, string password)
+        public string IsValidHostLogin(string email)
         {
             var query = from host in context.HostDetails
-                        where host.HostEmail == email && host.HostPassword == password
-                        select host;
-            if (query.ToList().Count == 1)
-                return true;
-            else
-                return false;
+                        where host.HostEmail == email 
+                        select host.HostPassword;
+            return
+                query.FirstOrDefault();
         }
 
         /// <summary>
@@ -133,15 +131,13 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool IsValidTravellerLogin(string email, string password)
+        public string IsValidTravellerLogin(string email)
         {
             var query = from traveller in context.TravellerDetails
-                        where traveller.TravellerEmail == email && traveller.TravellerPassword == password
-                        select traveller;
-            if (query.ToList().Count == 1)
-                return true;
-            else
-                return false;
+                        where traveller.TravellerEmail == email
+                        select traveller.TravellerPassword;
+            return
+                query.FirstOrDefault();
         }
     }
 }

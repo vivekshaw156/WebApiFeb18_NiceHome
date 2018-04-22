@@ -12,7 +12,7 @@ namespace MyNiceHome.Manager.Helpers
     {
        // MailAddress mailFrom;
         SmtpClient smtp;
-        
+
         public MailHelper()
         {
             //mailFrom = new MailAddress("mynicehome.application@gmail.com");

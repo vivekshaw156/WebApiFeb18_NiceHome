@@ -9,6 +9,9 @@ using MyNiceHome.Entities;
 using System.Text.RegularExpressions;
 using MyNiceHome.Exceptions;
 using MyNiceHome.Manager.Helpers;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using MyNiceHome.BusinessManager.MyNiceHome.BusinessManager.Helpers;
 
 namespace MyNiceHome.BusinessManager
 {
@@ -183,7 +186,13 @@ namespace MyNiceHome.BusinessManager
                 throw new UserDoesNotExistException("Email not registered");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
-            return (isSame);
+            if(isSame==true)
+            {
+                //code to generate access token
+                JwtTokenHelper tokenobj = new JwtTokenHelper();
+                string tokenString = tokenobj.GenerateToken(email,"host");
+            }
+            return await Task.FromResult(isSame);
         }
 
         //todo check business logic for valid traveller

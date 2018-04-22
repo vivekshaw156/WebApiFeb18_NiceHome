@@ -130,11 +130,11 @@ namespace MyNiceHome_Feb18_API.Controllers
         }
 
         [HttpPost]
-        public async Task<OperationResult> HostLogin(string email, string password)
+        public async Task<OperationResult> HostLogin([FromBody] LoginData loginData)
         {
             try
             {
-                bool result = await _userUtility.HostLoginAccess(email, password);
+                bool result = await _userUtility.HostLoginAccess(loginData.Email, loginData.Password);
                 if (result)
                 {
                     OperationResult operationResult = new OperationResult()
@@ -169,11 +169,11 @@ namespace MyNiceHome_Feb18_API.Controllers
         }
 
         [HttpPost]
-        public async Task<OperationResult> TravellerLogin(string email, string password)
+        public async Task<OperationResult> TravellerLogin([FromBody] LoginData loginData)
         {
             try
             {
-                bool result = await _userUtility.TravellerLoginAccess(email, password);
+                bool result = await _userUtility.TravellerLoginAccess(loginData.Email, loginData.Password);
                 if (result)
                 {
                     OperationResult operationResult = new OperationResult()

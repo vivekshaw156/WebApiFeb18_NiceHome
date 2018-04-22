@@ -188,7 +188,7 @@ namespace MyNiceHome.BusinessManager
             string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
             if(hashedPassword==null)
             {
-                throw new UserDoesNotExistException("Email not registered");
+                throw new UserDoesNotExistException("Email not registered for host");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
             if(isSame==true)
@@ -218,10 +218,10 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");
             }
-            string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
+            string hashedPassword = await _repositoryUtility.IsValidTravellerLogin(email);
             if (hashedPassword == null)
             {
-                throw new UserDoesNotExistException("Email not registered");
+                throw new UserDoesNotExistException("Email not registered for traveller");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
             return (isSame);

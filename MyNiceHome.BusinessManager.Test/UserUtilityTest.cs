@@ -13,7 +13,9 @@ namespace MyNiceHome.BusinessManager.Test
     [TestClass]
     public class UserUtilityTest
     {
-        //object of UserUtility to access business layer methods
+        /// <summary>
+        /// ReadOnly Reference of IUserUtility Interface
+        /// </summary>
         private readonly IUserUtility _userUtility;
 
         #region Constructor
@@ -122,7 +124,6 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if a name is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidNameException))]
         public void UserUtility_CreateNewHost_InvalidNameTest()
         {
             Host host = new Host
@@ -133,14 +134,20 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331234",
                 HostPassword = "password123"
             };
-            var result = _userUtility.CreateNewHost(host);
+            try
+            {
+                var result = _userUtility.CreateNewHost(host).Result;
+            }
+            catch(AggregateException exception)
+            {
+                Assert.AreEqual(typeof(InvalidNameException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if city is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidCityException))]
         public  void UserUtility_CreateNewHost_InvalidCityTest()
         {
             Host host = new Host
@@ -151,14 +158,20 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331234",
                 HostPassword = "password123"
             };
-            var result = _userUtility.CreateNewHost(host);
+            try
+            {
+                var result = _userUtility.CreateNewHost(host);
+            }
+            catch(AggregateException exception)
+            {
+                Assert.AreEqual(typeof(InvalidCityException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if city is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidEmailException))]
         public void UserUtility_CreateNewHost_InvalidEmailTest()
         {
             Host host = new Host
@@ -169,14 +182,20 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331234",
                 HostPassword = "password123"
             };
-            var result = _userUtility.CreateNewHost(host);
+            try
+            {
+                var result = _userUtility.CreateNewHost(host);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidEmailException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if phone number is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidPhoneNumberException))]
         public void UserUtility_CreateNewHost_InvalidPhoneNumberTest()
         {
             Host host = new Host
@@ -187,14 +206,20 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "qwert",
                 HostPassword = "password123"
             };
-            var result = _userUtility.CreateNewHost(host);
+            try
+            {
+                var result = _userUtility.CreateNewHost(host);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidPhoneNumberException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if password is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidPasswordException))]
         public void UserUtility_CreateNewHost_InvalidPasswordTest()
         {
             Host host = new Host
@@ -205,14 +230,20 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331234",
                 HostPassword = "123"
             };
-            var result = _userUtility.CreateNewHost(host);
+            try
+            {
+                var result = _userUtility.CreateNewHost(host);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidPasswordException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if a duplicate entry exists in the database
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(DuplicateEntryException))]
         public void UserUtility_CreateNewHost_DuplicateEntryTest()
         {
             Host host = new Host
@@ -223,14 +254,20 @@ namespace MyNiceHome.BusinessManager.Test
                 HostPhone = "9674331556",
                 HostPassword = "qwerty123"
             };
-            var result = _userUtility.CreateNewHost(host);
+            try
+            {
+                var result = _userUtility.CreateNewHost(host);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(DuplicateEntryException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         ///  Test if User Exist in DataBase
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(UserDoesNotExistException))]
         public void UserUtility_HostLoginAccess_InvalidUserExistTest()
         {
             Host host = new Host
@@ -238,8 +275,14 @@ namespace MyNiceHome.BusinessManager.Test
                 HostEmail = "some@yahoo.com",
                 HostPassword = "768956435"
             };
-
-            var result = _userUtility.HostLoginAccess(host.HostEmail, host.HostPassword);
+            try
+            {
+                var result = _userUtility.HostLoginAccess(host.HostEmail, host.HostPassword);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(UserDoesNotExistException), exception.InnerException.GetType());
+            }
         }
 
         #endregion
@@ -250,7 +293,6 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if a name is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidNameException))]
         public void UserUtility_CreateNewTraveller_InvalidNameTest()
         {
             Traveller traveller = new Traveller
@@ -261,14 +303,20 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331234",
                 TravellerPassword = "password123"
             };
-            var result = _userUtility.CreateNewTraveller(traveller);
+            try
+            {
+                var result = _userUtility.CreateNewTraveller(traveller);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidNameException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if city is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidCityException))]
         public void UserUtility_CreateNewTraveller_InvalidCityTest()
         {
             Traveller traveller = new Traveller
@@ -279,14 +327,20 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331234",
                 TravellerPassword = "password123"
             };
-            var result = _userUtility.CreateNewTraveller(traveller);
+            try
+            {
+                var result = _userUtility.CreateNewTraveller(traveller);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidCityException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if city is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidEmailException))]
         public void UserUtility_CreateNewTraveller_InvalidEmailTest()
         {
             Traveller traveller = new Traveller
@@ -297,14 +351,20 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331234",
                 TravellerPassword = "password123"
             };
-            var result = _userUtility.CreateNewTraveller(traveller);
+            try
+            {
+                var result = _userUtility.CreateNewTraveller(traveller);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidEmailException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if phone number is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidPhoneNumberException))]
         public void UserUtility_CreateNewTraveller_InvalidPhoneNumberTest()
         {
             Traveller traveller = new Traveller
@@ -315,15 +375,20 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "qwerty123",
                 TravellerPassword = "password123"
             };
-            //todo make a valid object of an user with a wrong type of name
-            var result = _userUtility.CreateNewTraveller(traveller);
+            try
+            {
+                var result = _userUtility.CreateNewTraveller(traveller);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidPhoneNumberException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if password is invalid
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidPasswordException))]
         public void UserUtility_CreateNewTraveller_InvalidPasswordTest()
         {
             Traveller traveller = new Traveller
@@ -334,14 +399,20 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331234",
                 TravellerPassword = "123"
             };
-            var result = _userUtility.CreateNewTraveller(traveller);
+            try
+            {
+                var result = _userUtility.CreateNewTraveller(traveller);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(InvalidPasswordException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         /// Tests if a duplicate entry exists in the database
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(DuplicateEntryException))]
         public void UserUtility_CreateNewTraveller_DuplicateEntryTest()
         {
             Traveller traveller = new Traveller
@@ -352,14 +423,20 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerPhone = "9674331556",
                 TravellerPassword = "qwerty123"
             };
-            var result = _userUtility.CreateNewTraveller(traveller);
+            try
+            {
+                var result = _userUtility.CreateNewTraveller(traveller);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(DuplicateEntryException), exception.InnerException.GetType());
+            }
         }
 
         /// <summary>
         ///  Test if User Exist in DataBase
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(UserDoesNotExistException))]
         public void UserUtility_TravellerLoginAccess_InvalidUserExistTest()
         {
 
@@ -368,8 +445,14 @@ namespace MyNiceHome.BusinessManager.Test
                 TravellerEmail = "something@yahoo.com",
                 TravellerPassword = "879657854"
             };
-
-            var result = _userUtility.HostLoginAccess(traveller.TravellerEmail, traveller.TravellerPassword);
+            try
+            {
+                var result = _userUtility.HostLoginAccess(traveller.TravellerEmail, traveller.TravellerPassword);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(UserDoesNotExistException), exception.InnerException.GetType());
+            }
         }
 
         #endregion
@@ -383,21 +466,30 @@ namespace MyNiceHome.BusinessManager.Test
         /// Tests if the user object is null
         /// </summary>
         [TestMethod]
-        // todo - expect a NullArgumentException
-        [ExpectedException(typeof(NullReferenceException))]
         public void UserUtility_CreateNewHost_NullUserTest()
         {
-            //todo make a valid object of an user with a wrong type of name
-            var result = _userUtility.CreateNewHost(null);
+            try
+            {
+                var result = _userUtility.CreateNewHost(null);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(NullReferenceException), exception.InnerException.GetType());
+            }
         }
 
 
         [TestMethod]
-        // todo- expect a NullReferenceException
-        [ExpectedException(typeof(NullReferenceException))]
         public void UserUtility_HostLoginAccess_NullUserExistTest()
         {
-            var result = _userUtility.HostLoginAccess(null,null);
+            try
+            {
+                var result = _userUtility.HostLoginAccess(null, null);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(NullReferenceException), exception.InnerException.GetType());
+            }
         }
 
 
@@ -405,20 +497,29 @@ namespace MyNiceHome.BusinessManager.Test
 
         #region Traveller Test
         [TestMethod]
-        // todo - expect a NullArgumentException
-        [ExpectedException(typeof(NullReferenceException))]
         public void UserUtility_CreateNewTraveller_NullUserTest()
         {
-            //todo make a valid object of an user with a wrong type of name
-            var result = _userUtility.CreateNewTraveller(null);
+            try
+            {
+                var result = _userUtility.CreateNewTraveller(null);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(NullReferenceException), exception.InnerException.GetType());
+            }
         }
 
         [TestMethod]
-        // todo- expect a NullReferenceException
-        [ExpectedException(typeof(NullReferenceException))]
         public void UserUtility_TravellerLoginAccess_NullUserExistTest()
         {
-            var result = _userUtility.TravellerLoginAccess(null, null);
+            try
+            {
+                var result = _userUtility.TravellerLoginAccess(null, null);
+            }
+            catch(Exception exception)
+            {
+                Assert.AreEqual(typeof(NullReferenceException), exception.InnerException.GetType());
+            }
         }
 
         #endregion

@@ -164,7 +164,12 @@ namespace MyNiceHome.BusinessManager
             }
         }
 
-        //todo check business logic for valid host
+        /// <summary>
+        /// Method for Host Login Access
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<bool> HostLoginAccess(string email, string password)
         {
             //checking null Object
@@ -195,7 +200,12 @@ namespace MyNiceHome.BusinessManager
             return await Task.FromResult(isSame);
         }
 
-        //todo check business logic for valid traveller
+        /// <summary>
+        /// Method for Traveller Login Access
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<bool> TravellerLoginAccess(string email, string password)
         {
             //checking for null objects

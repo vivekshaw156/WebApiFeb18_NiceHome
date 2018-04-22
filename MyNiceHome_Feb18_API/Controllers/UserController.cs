@@ -1,6 +1,7 @@
 ﻿using MyNiceHome.BusinessManager.Interfaces;
 using MyNiceHome.Entities;
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -47,7 +48,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// <param name="host"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OperationResult> CreateHost(Host host)
+        public async Task<IHttpActionResult> CreateHost(Host host)
         {
             try
             {
@@ -58,9 +59,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Success",
                         Status = true,
-                        StatusCode = 201
+                        StatusCode = HttpStatusCode.OK
                     };
-                    return operationResult;
+                    return Ok(operationResult);
                 }
                 else
                 {
@@ -68,9 +69,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Failure",
                         Status = false,
-                        StatusCode = 400
+                        StatusCode = HttpStatusCode.BadRequest
                     };
-                    return operationResult;
+                    return BadRequest(operationResult.Message);
                 }
             }
             catch (Exception exception)
@@ -79,9 +80,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                 {
                     Message = exception.Message,
                     Status = false,
-                    StatusCode = 400
+                    StatusCode = HttpStatusCode.BadRequest
                 };
-                return operationResult;
+                return BadRequest(operationResult.Message);
             }
         }
 
@@ -91,7 +92,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// <param name="traveller"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<OperationResult> CreateTraveller(Traveller traveller)
+        public async Task<IHttpActionResult> CreateTraveller(Traveller traveller)
         {
             try
             {
@@ -102,9 +103,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Success",
                         Status = true,
-                        StatusCode = 201
+                        StatusCode = HttpStatusCode.OK
                     };
-                    return operationResult;
+                    return Ok(operationResult);
                 }
                 else
                 {
@@ -112,9 +113,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Failure",
                         Status = false,
-                        StatusCode = 400
+                        StatusCode = HttpStatusCode.BadRequest
                     };
-                    return operationResult;
+                    return BadRequest(operationResult.Message);
                 }
             }
             catch (Exception exception)
@@ -123,14 +124,20 @@ namespace MyNiceHome_Feb18_API.Controllers
                 {
                     Message = exception.Message,
                     Status = false,
-                    StatusCode = 400
+                    StatusCode = HttpStatusCode.BadRequest
                 };
-                return operationResult;
+                return BadRequest(operationResult.Message);
             }
         }
 
+        /// <summary>
+        /// API endpoint that verifies a valid host Login
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<OperationResult> HostLogin(string email, string password)
+        public async Task<IHttpActionResult> HostLogin(string email, string password)
         {
             try
             {
@@ -141,9 +148,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Success",
                         Status = true,
-                        StatusCode = 201
+                        StatusCode = HttpStatusCode.OK
                     };
-                    return operationResult;
+                    return Ok(operationResult);
                 }
                 else
                 {
@@ -151,9 +158,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Failure",
                         Status = false,
-                        StatusCode = 400
+                        StatusCode = HttpStatusCode.BadRequest
                     };
-                    return operationResult;
+                    return BadRequest(operationResult.Message);
                 }
             }
             catch (Exception exception)
@@ -162,14 +169,20 @@ namespace MyNiceHome_Feb18_API.Controllers
                 {
                     Message = exception.Message,
                     Status = false,
-                    StatusCode = 400
+                    StatusCode = HttpStatusCode.BadRequest
                 };
-                return operationResult;
+                return BadRequest(operationResult.Message);
             }
         }
 
+        /// <summary>
+        /// API endpoint that verifies a valid traveller Login
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<OperationResult> TravellerLogin(string email, string password)
+        public async Task<IHttpActionResult> TravellerLogin(string email, string password)
         {
             try
             {
@@ -180,9 +193,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Success",
                         Status = true,
-                        StatusCode = 201
+                        StatusCode = HttpStatusCode.OK
                     };
-                    return operationResult;
+                    return Ok(operationResult);
                 }
                 else
                 {
@@ -190,9 +203,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                     {
                         Message = "Failure",
                         Status = false,
-                        StatusCode = 400
+                        StatusCode = HttpStatusCode.BadRequest
                     };
-                    return operationResult;
+                    return BadRequest(operationResult.Message);
                 }
             }
             catch (Exception exception)
@@ -201,9 +214,9 @@ namespace MyNiceHome_Feb18_API.Controllers
                 {
                     Message = exception.Message,
                     Status = false,
-                    StatusCode = 400
+                    StatusCode = HttpStatusCode.BadRequest
                 };
-                return operationResult;
+                return BadRequest(operationResult.Message);
             }
         }
         #endregion

@@ -10,7 +10,7 @@ namespace MyNiceHome.Manager.Helpers
 {
     class MailHelper
     {
-        MailAddress mailFrom;
+       // MailAddress mailFrom;
         SmtpClient smtp;
         
         public MailHelper()

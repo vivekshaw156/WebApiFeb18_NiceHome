@@ -106,6 +106,11 @@ namespace MyNiceHome_Feb18_API.Controllers
             }
         }
 
+        /// <summary>
+        /// API endpoint that Logs in the Host
+        /// </summary>
+        /// <param name="loginData"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IHttpActionResult> HostLogin([FromBody] LoginData loginData)
         {
@@ -140,6 +145,11 @@ namespace MyNiceHome_Feb18_API.Controllers
             }
         }
 
+        /// <summary>
+        /// API endpoint that Logs in the Traveller
+        /// </summary>
+        /// <param name="loginData"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IHttpActionResult> TravellerLogin([FromBody] LoginData loginData)
         {

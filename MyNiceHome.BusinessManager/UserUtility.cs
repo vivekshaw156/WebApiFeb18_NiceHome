@@ -192,7 +192,7 @@ namespace MyNiceHome.BusinessManager
                 JwtTokenHelper tokenobj = new JwtTokenHelper();
                 string tokenString = tokenobj.GenerateToken(email,"host");
             }
-            return Task.FromResult(isSame);
+            return await Task.FromResult(isSame);
         }
 
         //todo check business logic for valid traveller

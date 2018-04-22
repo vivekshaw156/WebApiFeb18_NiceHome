@@ -45,7 +45,7 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        public Task<bool> CreateNewHost(Host host)
+        public async Task<bool> CreateNewHost(Host host)
         {
             var cityHost = (host.HostCity).ToUpper();
             var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
@@ -77,7 +77,7 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new InvalidPasswordException("Please enter a valid password");
             }
-            else if (_repositoryUtility.CheckIfHostExists(host))
+            else if (await _repositoryUtility.CheckIfHostExists(host))
             {
                 throw new DuplicateEntryException("Host already exists");
             }
@@ -91,7 +91,7 @@ namespace MyNiceHome.BusinessManager
                 host.HostName = host.HostName.ToUpper();
                 host.HostCity = host.HostCity.ToUpper();
 
-                return Task.FromResult(_repositoryUtility.AddHost(host));
+                return await (_repositoryUtility.AddHost(host));
             }
             catch (Exception exception)
             {
@@ -104,7 +104,7 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        public Task<bool> CreateNewTraveller(Traveller traveller)
+        public async Task<bool> CreateNewTraveller(Traveller traveller)
         {
             traveller.TravellerCity = (traveller.TravellerCity).ToUpper();
 
@@ -141,7 +141,7 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new InvalidPasswordException("Please enter a valid password");
             }
-            else if (_repositoryUtility.CheckIfTravellerExists(traveller))
+            else if (await _repositoryUtility.CheckIfTravellerExists(traveller))
             {
                 throw new DuplicateEntryException("Traveller already exists");
             }
@@ -156,7 +156,7 @@ namespace MyNiceHome.BusinessManager
                 traveller.TravellerCity = traveller.TravellerCity.ToUpper();
 
 
-                return Task.FromResult(_repositoryUtility.AddTraveller(traveller));
+                return await (_repositoryUtility.AddTraveller(traveller));
             }
             catch (Exception exception)
             {
@@ -165,7 +165,7 @@ namespace MyNiceHome.BusinessManager
         }
 
         //todo check business logic for valid host
-        public Task<bool> HostLoginAccess(string email, string password)
+        public async Task<bool> HostLoginAccess(string email, string password)
         {
             //checking null Object
             if (email == null && password == null)
@@ -180,7 +180,7 @@ namespace MyNiceHome.BusinessManager
             }
 
          
-            string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
+            string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
             if(hashedPassword==null)
             {
                 throw new UserDoesNotExistException("Email not registered");
@@ -196,7 +196,7 @@ namespace MyNiceHome.BusinessManager
         }
 
         //todo check business logic for valid traveller
-        public Task<bool> TravellerLoginAccess(string email, string password)
+        public async Task<bool> TravellerLoginAccess(string email, string password)
         {
             //checking for null objects
             if (email == null && password == null)
@@ -208,13 +208,13 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");
             }
-            string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
+            string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
             if (hashedPassword == null)
             {
                 throw new UserDoesNotExistException("Email not registered");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
-            return Task.FromResult(isSame);
+            return (isSame);
         }
 
         /// <summary>

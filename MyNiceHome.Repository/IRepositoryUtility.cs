@@ -16,14 +16,14 @@ namespace MyNiceHome.Repository
         /// UnImplemented method for adding Host details in Database
         /// </summary>
         /// <returns></returns>
-        bool AddHost(Host host);
+        Task<bool> AddHost(Host host);
 
         /// <summary>
         /// UnImplemented method for adding Traveller details in Database
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        bool AddTraveller(Traveller traveller);
+        Task<bool> AddTraveller(Traveller traveller);
 
         /// <summary>
         /// UnImplemented method for Creating Database
@@ -36,14 +36,14 @@ namespace MyNiceHome.Repository
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        bool CheckIfHostExists(Host host);
+        Task<bool> CheckIfHostExists(Host host);
 
         /// <summary>
         /// UnImplemented Method for Checking already registered Traveller
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        bool CheckIfTravellerExists(Traveller traveller);
+        Task<bool> CheckIfTravellerExists(Traveller traveller);
 
         /// <summary>
         /// UnImplemented Method for Checking valid host in Database
@@ -51,7 +51,7 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        string IsValidHostLogin(string email);
+        Task<string> IsValidHostLogin(string email);
 
         /// <summary>
         /// UnImplemented Method for Checking valid traveller in Database
@@ -59,6 +59,6 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        string IsValidTravellerLogin(string email);
+        Task<string> IsValidTravellerLogin(string email);
     }
 }

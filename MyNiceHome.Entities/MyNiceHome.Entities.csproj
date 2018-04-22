@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Host.cs" />
+    <Compile Include="LoginData.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="PaymentMock.cs" />
     <Compile Include="PermanentBookingLog.cs" />

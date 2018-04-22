@@ -42,7 +42,7 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        public async Task<bool> CreateNewHost(Host host)
+        public Task<bool> CreateNewHost(Host host)
         {
             var cityHost = (host.HostCity).ToUpper();
             var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
@@ -52,7 +52,7 @@ namespace MyNiceHome.BusinessManager
 
             if (host == null)
             {
-                throw new ArgumentNullException("host");
+                throw new NullReferenceException("host");
             }
             else if (host.HostName == null || !(patternName.Match(host.HostName).Success))
             {
@@ -74,7 +74,7 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new InvalidPasswordException("Please enter a valid password");
             }
-            else if (await _repositoryUtility.CheckIfHostExists(host))
+            else if (_repositoryUtility.CheckIfHostExists(host))
             {
                 throw new DuplicateEntryException("Host already exists");
             }
@@ -85,7 +85,10 @@ namespace MyNiceHome.BusinessManager
                 string enteredPassword = host.HostPassword;
                 host.HostPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
 
-                return await (_repositoryUtility.AddHost(host));
+                host.HostName = host.HostName.ToUpper();
+                host.HostCity = host.HostCity.ToUpper();
+
+                return Task.FromResult(_repositoryUtility.AddHost(host));
             }
             catch (Exception exception)
             {
@@ -98,7 +101,7 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        public async Task<bool> CreateNewTraveller(Traveller traveller)
+        public Task<bool> CreateNewTraveller(Traveller traveller)
         {
             traveller.TravellerCity = (traveller.TravellerCity).ToUpper();
 
@@ -135,7 +138,7 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new InvalidPasswordException("Please enter a valid password");
             }
-            else if (await _repositoryUtility.CheckIfTravellerExists(traveller))
+            else if (_repositoryUtility.CheckIfTravellerExists(traveller))
             {
                 throw new DuplicateEntryException("Traveller already exists");
             }
@@ -146,7 +149,11 @@ namespace MyNiceHome.BusinessManager
                 string enteredPassword = traveller.TravellerPassword;
                 traveller.TravellerPassword = _userUtilityHelper.GetPasswordHash(enteredPassword);
 
-                return await (_repositoryUtility.AddTraveller(traveller));
+                traveller.TravellerName = traveller.TravellerName.ToUpper();
+                traveller.TravellerCity = traveller.TravellerCity.ToUpper();
+
+
+                return Task.FromResult(_repositoryUtility.AddTraveller(traveller));
             }
             catch (Exception exception)
             {
@@ -155,35 +162,50 @@ namespace MyNiceHome.BusinessManager
         }
 
         //todo check business logic for valid host
-        public async Task<bool> HostLoginAccess(string email, string password)
+        public Task<bool> HostLoginAccess(string email, string password)
         {
-            if(email==null || password==null)
+            //checking null Object
+            if (email == null && password == null)
             {
-                //throw new UserDoesNotExistException("Email or password cannot be null")
+                throw new NullReferenceException("host");
             }
-            string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
+
+            //checking null fields
+            if (email==null || password==null)
+            {
+                throw new UserDoesNotExistException("Email or password cannot be null");
+            }
+
+         
+            string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
             if(hashedPassword==null)
             {
-                //throw new UserDoesNotExistException("Email not registered")
+                throw new UserDoesNotExistException("Email not registered");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
-            return (isSame);
+            return Task.FromResult(isSame);
         }
 
         //todo check business logic for valid traveller
-        public async Task<bool> TravellerLoginAccess(string email, string password)
+        public Task<bool> TravellerLoginAccess(string email, string password)
         {
+            //checking for null objects
+            if (email == null && password == null)
+            {
+                throw new NullReferenceException("Traveller");
+            }
+             //checking for null fields
             if (email == null || password == null)
             {
-                //throw new UserDoesNotExistException("Email or password cannot be null")
+                throw new UserDoesNotExistException("Email or password cannot be null");
             }
-            string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
+            string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
             if (hashedPassword == null)
             {
-                //throw new UserDoesNotExistException("Email not registered")
+                throw new UserDoesNotExistException("Email not registered");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
-            return (isSame);
+            return Task.FromResult(isSame);
         }
 
         /// <summary>

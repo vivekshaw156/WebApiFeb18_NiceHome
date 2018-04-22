@@ -1,6 +1,5 @@
 ﻿using MyNiceHome.Entities;
 using System;
-using System.Threading.Tasks;
 
 namespace MyNiceHome.Repository
 {
@@ -9,14 +8,14 @@ namespace MyNiceHome.Repository
     /// </summary>
     public class RepositoryMock : IRepositoryUtility
     {
-        public Task<bool> AddHost(Host host)
+        public bool AddHost(Host host)
         {
-            return Task.FromResult(true);
+            return true;
         }
 
-        public Task<bool> AddTraveller(Traveller traveller)
+        public bool AddTraveller(Traveller traveller)
         {
-            return Task.FromResult(true);
+            return true;
         }
 
         public bool GetNewConnection()
@@ -24,7 +23,7 @@ namespace MyNiceHome.Repository
             throw new NotImplementedException();
         }
 
-        public Task<bool> CheckIfHostExists(Host host)
+        public bool CheckIfHostExists(Host host)
         {
             Host mockHost = new Host
             {
@@ -35,11 +34,11 @@ namespace MyNiceHome.Repository
                 HostPassword = "qwerty123"
             };
             if (host.HostEmail.Equals(mockHost.HostEmail)&& host.HostPhone.Equals(mockHost.HostPhone))
-                return Task.FromResult(true);
-            return Task.FromResult(false);
+                return true;
+            return false;
         }
 
-        public Task<bool> CheckIfTravellerExists(Traveller traveller)
+        public bool CheckIfTravellerExists(Traveller traveller)
         {
             Traveller mockTraveller = new Traveller
             {
@@ -50,20 +49,26 @@ namespace MyNiceHome.Repository
                 TravellerPassword = "qwerty123"
             };
             if (traveller.TravellerEmail.Equals(mockTraveller.TravellerEmail) && traveller.TravellerPhone.Equals(mockTraveller.TravellerPhone))
-                return Task.FromResult(true);
-            return Task.FromResult(false);
+                return true;
+            return false;
         }
 
-        public Task<string> IsValidHostLogin(string email)
+        public string IsValidHostLogin(string email)
         {
-            //todo check if host exists in database
-            return Task.FromResult("");
+            // mock password hash for password=password123
+            if (email == "something@domainName.com")
+                return "$2a$10$DRKlSiSQgoQozgysjguJou5OoMmyhFxNW5FzvuhYOs.bhxPEVUlbq";
+            else
+                return null;
         }
 
-        public Task<string> IsValidTravellerLogin(string email)
+        public string IsValidTravellerLogin(string email)
         {
-            //todo check if traveller exists in database
-            return Task.FromResult("");
+            // mock password hash for password=password123
+            if (email == "something@domainName.com")
+                return "$2a$10$DRKlSiSQgoQozgysjguJou5OoMmyhFxNW5FzvuhYOs.bhxPEVUlbq";
+            else
+                return null;
         }
     }
 }

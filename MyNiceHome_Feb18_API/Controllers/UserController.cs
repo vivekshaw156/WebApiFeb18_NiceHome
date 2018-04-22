@@ -118,8 +118,15 @@ namespace MyNiceHome_Feb18_API.Controllers
                     operationResult.Message = "Success";
                     operationResult.Status = true;
                     operationResult.StatusCode = HttpStatusCode.OK;
+                    return Ok(operationResult);
                 }
-                return Ok(operationResult);
+                else
+                {
+                    operationResult.Message = "Invalid Email Or Password";
+                    operationResult.Status = false;
+                    operationResult.StatusCode = HttpStatusCode.BadRequest;
+                    return BadRequest(operationResult.Message);
+                }
             }
             catch (Exception exception)
             {
@@ -145,8 +152,15 @@ namespace MyNiceHome_Feb18_API.Controllers
                     operationResult.Message = "Success";
                     operationResult.Status = true;
                     operationResult.StatusCode = HttpStatusCode.OK;
+                    return Ok(operationResult);
                 }
-                return Ok(operationResult);
+                else
+                {
+                    operationResult.Message = "Invalid Email Or Password";
+                    operationResult.Status = false;
+                    operationResult.StatusCode = HttpStatusCode.BadRequest;
+                    return BadRequest(operationResult.Message);
+                }
             }
             catch (Exception exception)
             {

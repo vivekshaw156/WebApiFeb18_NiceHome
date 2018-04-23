@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// Permanent Booking Log Class
+    /// </summary>
    public class PermanentBookingLog
     {
+        #region Properties of PermanentBookingLog
         [Key]
         public string BID { get; set; }
 
@@ -31,5 +35,6 @@ namespace MyNiceHome.Entities
         public List<PaymentMock> PaymentMocks { get; set; }
         public Property Property { get; set; }
         public Traveller Traveller { get; set; }
+        #endregion
     }
 }

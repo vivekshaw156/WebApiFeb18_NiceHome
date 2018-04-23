@@ -12,6 +12,7 @@ namespace MyNiceHome.Entities
     /// </summary>
     public class Host
     {
+        #region Properties of Host Entity
         [Key]
         public string HID { get; set; }
 
@@ -35,5 +36,7 @@ namespace MyNiceHome.Entities
         public virtual List<Property> Properties { get; set; }
 
         public virtual List<TravellerRating> TravellerRatings { get; set; }
+
+        #endregion
     }
 }

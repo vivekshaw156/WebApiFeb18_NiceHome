@@ -9,21 +9,40 @@ namespace MyNiceHome.Repository
     /// </summary>
     public class RepositoryMock : IRepositoryUtility
     {
+        /// <summary>
+        /// Dummy method for Adding Host
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         public Task<bool> AddHost(Host host)
         {
             return Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Dummy method for Adding Host
+        /// </summary>
+        /// <param name="traveller"></param>
+        /// <returns></returns>
         public Task<bool> AddTraveller(Traveller traveller)
         {
             return Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Dummy Connection method
+        /// </summary>
+        /// <returns></returns>
         public bool GetNewConnection()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Dummy Host Checking method 
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         public Task<bool> CheckIfHostExists(Host host)
         {
             Host mockHost = new Host
@@ -39,6 +58,11 @@ namespace MyNiceHome.Repository
             return Task.FromResult(false);
         }
 
+        /// <summary>
+        /// Dummy Traveller checking method
+        /// </summary>
+        /// <param name="traveller"></param>
+        /// <returns></returns>
         public Task<bool> CheckIfTravellerExists(Traveller traveller)
         {
             Traveller mockTraveller = new Traveller
@@ -54,6 +78,11 @@ namespace MyNiceHome.Repository
             return Task.FromResult(false);
         }
 
+        /// <summary>
+        /// Dummy method for Valid Host
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public Task<string> IsValidHostLogin(string email)
         {
             // mock password hash for password=password123
@@ -63,6 +92,11 @@ namespace MyNiceHome.Repository
                 return null;
         }
 
+        /// <summary>
+        /// Dummy method for Valid Traveller
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public Task<string> IsValidTravellerLogin(string email)
         {
             // mock password hash for password=password123

@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// Traveller Entity
+    /// </summary>
     public class Traveller
     {
+        #region Properties of Traveller Entity
         [Key]
         public string TID { get; set; }
         public string TravellerName { get; set; }
@@ -30,6 +34,7 @@ namespace MyNiceHome.Entities
         public List<PropertyRating> PropertyRatings { get; set; }
 
         public List<TravellerRating> TravellerRatings { get; set; }
+        #endregion
 
     }
 }

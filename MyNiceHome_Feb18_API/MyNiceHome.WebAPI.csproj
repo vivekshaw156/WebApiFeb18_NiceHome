@@ -271,6 +271,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\MyNiceHomeWebAPI2018Dev - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\MyNiceHomeWebAPI2018Prod - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\MyNiceHomeWebAPI2018QA - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

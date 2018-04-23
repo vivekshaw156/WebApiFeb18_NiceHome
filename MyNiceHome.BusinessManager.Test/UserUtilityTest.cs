@@ -463,7 +463,7 @@ namespace MyNiceHome.BusinessManager.Test
 
         #region Host Test
         /// <summary>
-        /// Tests if the user object is null
+        /// Tests if the Host is Null
         /// </summary>
         [TestMethod]
         public void UserUtility_CreateNewHost_NullUserTest()
@@ -478,7 +478,9 @@ namespace MyNiceHome.BusinessManager.Test
             }
         }
 
-
+        /// <summary>
+        /// Host Null Test
+        /// </summary>
         [TestMethod]
         public void UserUtility_HostLoginAccess_NullUserExistTest()
         {
@@ -496,6 +498,9 @@ namespace MyNiceHome.BusinessManager.Test
         #endregion
 
         #region Traveller Test
+        /// <summary>
+        /// Null Traveller Test
+        /// </summary>
         [TestMethod]
         public void UserUtility_CreateNewTraveller_NullUserTest()
         {
@@ -509,6 +514,9 @@ namespace MyNiceHome.BusinessManager.Test
             }
         }
 
+        /// <summary>
+        /// Null Traveller Test
+        /// </summary>
         [TestMethod]
         public void UserUtility_TravellerLoginAccess_NullUserExistTest()
         {

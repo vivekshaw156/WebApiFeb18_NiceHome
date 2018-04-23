@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// PropertyImage Class
+    /// </summary>
     public class PropertyImage
     {
+        #region Properties of PropertyImage Class
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ImageId { get; set; }
@@ -20,5 +24,6 @@ namespace MyNiceHome.Entities
         public byte[] Image { get; set; }
 
         public Property Property { get; set; }
+        #endregion
     }
 }

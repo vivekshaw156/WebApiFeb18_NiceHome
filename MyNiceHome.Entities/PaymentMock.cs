@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// Payment Mock Class
+    /// </summary>
     public class PaymentMock
     {
+        #region Properties of Payment Mock Class
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MockId { get; set; }
@@ -34,9 +38,7 @@ namespace MyNiceHome.Entities
         public virtual Host Host { get; set; }
         public virtual PermanentBookingLog PermanentBookingLog { get; set; }
         public virtual Property Property { get; set; }
-        public virtual Traveller Traveller
-        {
-            get; set;
-        }
+        public virtual Traveller Traveller{get; set;}
+        #endregion
     }
 }

@@ -199,7 +199,7 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");
             }
-            string hashedPassword = _repositoryUtility.IsValidHostLogin(email);
+            string hashedPassword = _repositoryUtility.IsValidTravellerLogin(email);
             if (hashedPassword == null)
             {
                 throw new UserDoesNotExistException("Email not registered");

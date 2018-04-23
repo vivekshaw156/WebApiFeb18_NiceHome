@@ -30,10 +30,10 @@ namespace MyNiceHome.Repository
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        public bool AddHost(Host host)
+        public async Task<bool> AddHost(Host host)
         {
             context.HostDetails.Add(host);
-            return (context.SaveChanges() > 0) ? true : false;
+            return (await context.SaveChangesAsync() > 0) ? true : false;
         }
 
         /// <summary>
@@ -41,10 +41,10 @@ namespace MyNiceHome.Repository
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        public bool AddTraveller(Traveller traveller)
+        public async Task<bool> AddTraveller(Traveller traveller)
         {
             context.TravellerDetails.Add(traveller);
-            return (context.SaveChanges() > 0) ? true : false;
+            return (await context.SaveChangesAsync() > 0) ? true : false;
         }
 
         /// <summary>
@@ -62,9 +62,9 @@ namespace MyNiceHome.Repository
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
-        public bool CheckIfHostExists(Host host)
+        public async Task<bool> CheckIfHostExists(Host host)
         {
-            var queryOne = (from user in context.HostDetails
+            var queryOne = await Task.FromResult(from user in context.HostDetails
                             where user.HostEmail == host.HostEmail select user);
             if (queryOne.ToList().Count == 1)
             {
@@ -72,7 +72,7 @@ namespace MyNiceHome.Repository
             }
             else
             {
-                var queryTwo = (from user in context.HostDetails
+                var queryTwo = await Task.FromResult(from user in context.HostDetails
                                 where user.HostPhone == host.HostPhone
                                 select user);
                 if(queryTwo.ToList().Count == 1)
@@ -88,9 +88,9 @@ namespace MyNiceHome.Repository
         /// </summary>
         /// <param name="traveller"></param>
         /// <returns></returns>
-        public bool CheckIfTravellerExists(Traveller traveller)
+        public async Task<bool> CheckIfTravellerExists(Traveller traveller)
         {
-            var queryOne = (from user in context.TravellerDetails
+            var queryOne = await Task.FromResult(from user in context.TravellerDetails
                             where user.TravellerEmail == traveller.TravellerEmail
                             select user);
             if (queryOne.ToList().Count == 1)
@@ -99,7 +99,7 @@ namespace MyNiceHome.Repository
             }
             else
             {
-                var queryTwo = (from user in context.TravellerDetails
+                var queryTwo = await Task.FromResult(from user in context.TravellerDetails
                                 where user.TravellerPhone == traveller.TravellerPhone
                                 select user);
                 if (queryTwo.ToList().Count == 1)
@@ -116,11 +116,12 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public string IsValidHostLogin(string email)
+        public async Task<string> IsValidHostLogin(string email)
         {
-            var query = from host in context.HostDetails
-                        where host.HostEmail == email 
-                        select host.HostPassword;
+            var query =  await Task.FromResult(context.HostDetails
+                        .Where(host => host.HostEmail == email)
+                        .Select(host=> host.HostPassword));
+                        
             return
                 query.FirstOrDefault();
         }
@@ -131,11 +132,11 @@ namespace MyNiceHome.Repository
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public string IsValidTravellerLogin(string email)
+        public async Task<string> IsValidTravellerLogin(string email)
         {
-            var query = from traveller in context.TravellerDetails
+            var query = await Task.FromResult(from traveller in context.TravellerDetails
                         where traveller.TravellerEmail == email
-                        select traveller.TravellerPassword;
+                        select traveller.TravellerPassword);
             return
                 query.FirstOrDefault();
         }

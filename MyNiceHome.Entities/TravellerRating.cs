@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// Traveller Rating Class
+    /// </summary>
     public class TravellerRating
     {
+        #region Properties of Traveller Rating Entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TravellerRatingId { get; set; }
@@ -26,5 +30,6 @@ namespace MyNiceHome.Entities
 
         public Host Host { get; set; }
         public Traveller Traveller { get; set; }
+        #endregion
     }
 }

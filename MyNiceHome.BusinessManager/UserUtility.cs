@@ -164,7 +164,12 @@ namespace MyNiceHome.BusinessManager
             }
         }
 
-        //todo check business logic for valid host
+        /// <summary>
+        /// Method for Host Login Access
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<bool> HostLoginAccess(string email, string password)
         {
             //checking null Object
@@ -183,7 +188,7 @@ namespace MyNiceHome.BusinessManager
             string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
             if(hashedPassword==null)
             {
-                throw new UserDoesNotExistException("Email not registered");
+                throw new UserDoesNotExistException("Email not registered for host");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
             if(isSame==true)
@@ -191,11 +196,18 @@ namespace MyNiceHome.BusinessManager
                 //code to generate access token
                 JwtTokenHelper tokenobj = new JwtTokenHelper();
                 string tokenString = tokenobj.GenerateToken(email,"host");
+
+                
             }
             return await Task.FromResult(isSame);
         }
 
-        //todo check business logic for valid traveller
+        /// <summary>
+        /// Method for Traveller Login Access
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<bool> TravellerLoginAccess(string email, string password)
         {
             //checking for null objects
@@ -208,10 +220,10 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");
             }
-            string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
+            string hashedPassword = await _repositoryUtility.IsValidTravellerLogin(email);
             if (hashedPassword == null)
             {
-                throw new UserDoesNotExistException("Email not registered");
+                throw new UserDoesNotExistException("Email not registered for traveller");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
             return (isSame);

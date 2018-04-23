@@ -8,14 +8,20 @@ using System.Net;
 
 namespace MyNiceHome.Manager.Helpers
 {
+    /// <summary>
+    /// Helper Method for Mailing
+    /// </summary>
     class MailHelper
     {
-       // MailAddress mailFrom;
+        MailAddress mailFrom;
         SmtpClient smtp;
 
+        /// <summary>
+        /// MailHelper Method
+        /// </summary>
         public MailHelper()
         {
-            //mailFrom = new MailAddress("mynicehome.application@gmail.com");
+            mailFrom = new MailAddress("mynicehome.application@gmail.com");
             smtp = new SmtpClient()
             {
                 Host = "smtp.gmail.com",
@@ -25,6 +31,13 @@ namespace MyNiceHome.Manager.Helpers
             };
         }
 
+        /// <summary>
+        /// SendTo method for MailIng to Someone
+        /// </summary>
+        /// <param name="mailTo"></param>
+        /// <param name="subject"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
         bool sendTo(string mailTo, string subject, string body)
         {
 

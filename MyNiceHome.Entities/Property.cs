@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace MyNiceHome.Entities
 {
+    /// <summary>
+    /// Property Class
+    /// </summary>
     public class Property
     {
+        #region Properties of Property Class
         [Key]
         public string PID { get; set; }
 
@@ -37,5 +41,6 @@ namespace MyNiceHome.Entities
         public List<PropertyImage> PropertyImages { get; set; }
 
         public List<PropertyRating> PropertyRatings { get; set; }
+        #endregion
     }
 }

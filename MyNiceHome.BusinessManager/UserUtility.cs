@@ -191,6 +191,8 @@ namespace MyNiceHome.BusinessManager
                 //code to generate access token
                 JwtTokenHelper tokenobj = new JwtTokenHelper();
                 string tokenString = tokenobj.GenerateToken(email,"host");
+
+                
             }
             return await Task.FromResult(isSame);
         }

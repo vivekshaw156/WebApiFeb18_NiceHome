@@ -26,8 +26,6 @@ namespace MyNiceHome.BusinessManager.MyNiceHome.BusinessManager.Helpers
 
             const string secretHash = "WYKgonnAkp09g12eoZgkD0fF4sqZk9dZNaxgfX6vjwKtYUeHWvsbuuFF8lx3LrBkzy3gvXWmaBqivtkVoF7EPak6DiJ4INin6VLk";
 
-            var now = DateTime.UtcNow;
-
             var securityKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(secretHash));
 
             var signingCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(securityKey, Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature);

@@ -38,7 +38,7 @@ namespace MyNiceHome.Manager.Helpers
         /// <param name="subject"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        bool sendTo(string mailTo, string subject, string body)
+        public bool sendTo(string mailTo, string subject, string body)
         {
 
             try

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MyNiceHome_Feb18_API.Controllers
 {
@@ -47,6 +48,7 @@ namespace MyNiceHome_Feb18_API.Controllers
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
+        /// 
         [HttpPost]
         public async Task<IHttpActionResult> CreateHost(Host host)
         {
@@ -183,6 +185,7 @@ namespace MyNiceHome_Feb18_API.Controllers
                 return BadRequest(operationResult.Message);
             }
         }
+        
         #endregion
     }
 }

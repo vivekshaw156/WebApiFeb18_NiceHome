@@ -9,21 +9,10 @@ namespace MyNiceHome_Feb18_API.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        [HttpPost]
+        public void Signup([FromBody]string value)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
+            
         }
 
         // PUT api/values/5

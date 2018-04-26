@@ -259,4 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-/MyNiceHome_Feb18_API/Properties/PublishProfiles
+/MyNiceHome_Feb18_API/Properties/PublishProfiles/MyNiceHomeWebAPI2018Dev - Web Deploy.pubxml
+/MyNiceHome_Feb18_API/Properties/PublishProfiles/MyNiceHomeWebAPI18QA - Web Deploy.pubxml
+/MyNiceHome_Feb18_API/Properties/PublishProfiles/MyNiceHomeWebAPI18Prod - Web Deploy.pubxml

@@ -30,6 +30,8 @@ namespace MyNiceHome.BusinessManager
         /// </summary>
         private readonly UserUtilityHelper _userUtilityHelper;
 
+        private readonly MailHelper _mailHelper;
+
         /// <summary>
         /// UserUtility Constructor
         /// </summary>
@@ -38,6 +40,7 @@ namespace MyNiceHome.BusinessManager
         {
             _userUtilityHelper = new UserUtilityHelper();
             _repositoryUtility = repositoryUtility;
+            _mailHelper = new MailHelper();
         }
 
         /// <summary>
@@ -90,8 +93,13 @@ namespace MyNiceHome.BusinessManager
 
                 host.HostName = host.HostName.ToUpper();
                 host.HostCity = host.HostCity.ToUpper();
-
-                return await (_repositoryUtility.AddHost(host));
+                
+                if (await _repositoryUtility.AddHost(host))
+                {
+                    _mailHelper.sendTo(host.HostEmail,"Successful Host Registeration", "Congrats!! You are a Registered Host");
+                    return true;
+                }
+                else { return false; }
             }
             catch (Exception exception)
             {
@@ -155,8 +163,12 @@ namespace MyNiceHome.BusinessManager
                 traveller.TravellerName = traveller.TravellerName.ToUpper();
                 traveller.TravellerCity = traveller.TravellerCity.ToUpper();
 
-
-                return await (_repositoryUtility.AddTraveller(traveller));
+                if (await _repositoryUtility.AddTraveller(traveller))
+                {
+                    _mailHelper.sendTo(traveller.TravellerEmail, "Successful Traveller Registeration", "Congrats!! You are a Registered Traveller");
+                    return true;
+                }
+                else { return false; }
             }
             catch (Exception exception)
             {

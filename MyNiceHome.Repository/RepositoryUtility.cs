@@ -10,7 +10,7 @@ namespace MyNiceHome.Repository
     /// <summary>
     /// RepositoryUtility Class
     /// </summary>
-    public class RepositoryUtility:IRepositoryUtility
+    public class RepositoryUtility : IRepositoryUtility
     {
         /// <summary>
         /// Reference for MyNiceHomeContext Class
@@ -65,7 +65,8 @@ namespace MyNiceHome.Repository
         public async Task<bool> CheckIfHostExists(Host host)
         {
             var queryOne = await Task.FromResult(from user in context.HostDetails
-                            where user.HostEmail == host.HostEmail select user);
+                                                 where user.HostEmail == host.HostEmail
+                                                 select user);
             if (queryOne.ToList().Count == 1)
             {
                 return true;
@@ -73,9 +74,9 @@ namespace MyNiceHome.Repository
             else
             {
                 var queryTwo = await Task.FromResult(from user in context.HostDetails
-                                where user.HostPhone == host.HostPhone
-                                select user);
-                if(queryTwo.ToList().Count == 1)
+                                                     where user.HostPhone == host.HostPhone
+                                                     select user);
+                if (queryTwo.ToList().Count == 1)
                 {
                     return true;
                 }
@@ -91,8 +92,8 @@ namespace MyNiceHome.Repository
         public async Task<bool> CheckIfTravellerExists(Traveller traveller)
         {
             var queryOne = await Task.FromResult(from user in context.TravellerDetails
-                            where user.TravellerEmail == traveller.TravellerEmail
-                            select user);
+                                                 where user.TravellerEmail == traveller.TravellerEmail
+                                                 select user);
             if (queryOne.ToList().Count == 1)
             {
                 return true;
@@ -100,8 +101,8 @@ namespace MyNiceHome.Repository
             else
             {
                 var queryTwo = await Task.FromResult(from user in context.TravellerDetails
-                                where user.TravellerPhone == traveller.TravellerPhone
-                                select user);
+                                                     where user.TravellerPhone == traveller.TravellerPhone
+                                                     select user);
                 if (queryTwo.ToList().Count == 1)
                 {
                     return true;
@@ -118,10 +119,10 @@ namespace MyNiceHome.Repository
         /// <returns></returns>
         public async Task<string> IsValidHostLogin(string email)
         {
-            var query =  await Task.FromResult(context.HostDetails
+            var query = await Task.FromResult(context.HostDetails
                         .Where(host => host.HostEmail == email)
-                        .Select(host=> host.HostPassword));
-                        
+                        .Select(host => host.HostPassword));
+
             return
                 query.FirstOrDefault();
         }
@@ -135,10 +136,84 @@ namespace MyNiceHome.Repository
         public async Task<string> IsValidTravellerLogin(string email)
         {
             var query = await Task.FromResult(from traveller in context.TravellerDetails
-                        where traveller.TravellerEmail == email
-                        select traveller.TravellerPassword);
+                                              where traveller.TravellerEmail == email
+                                              select traveller.TravellerPassword);
             return
                 query.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Validating the Host for resetting password
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public string IsValidHost(string email)
+        {
+            var query = (from host in context.HostDetails
+                         where host.HostEmail == email
+                         select host.HID);
+            return
+                query.FirstOrDefault();
+
+        }
+        /// <summary>
+        /// Validating the Traveller for resetting password
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public string IsValidTraveller(string email)
+        {
+            var query = (from traveller in context.TravellerDetails
+                         where traveller.TravellerEmail == email
+                         select traveller.TID);
+            return
+                query.FirstOrDefault();
+
+        }
+
+        /// <summary>
+        /// Updating the Host Password
+        /// </summary>
+        /// <param name="newPassword"></param>
+        /// <param name="hostId"></param>
+        /// <returns></returns>
+        public bool CreateNewHostPassword(string newPassword, string hostId)
+        {
+            try
+            {
+                Host query = (from host in context.HostDetails
+                              where host.HID == hostId
+                              select host).FirstOrDefault();
+                query.HostPassword = newPassword;
+                context.SaveChanges();
+                return true;
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+        }
+        /// <summary>
+        /// Updating the Traveller Password
+        /// </summary>
+        /// <param name="newPassword"></param>
+        /// <param name="travellerId"></param>
+        /// <returns></returns>
+        public bool CreateNewTravellerPassword(string newPassword, string travellerId)
+        {
+            try
+            {
+                Traveller query = (from traveller in context.TravellerDetails
+                              where traveller.TID == travellerId
+                              select traveller).FirstOrDefault();
+                query.TravellerPassword = newPassword;
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }

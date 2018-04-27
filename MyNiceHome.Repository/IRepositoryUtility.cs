@@ -53,6 +53,16 @@ namespace MyNiceHome.Repository
         /// <returns></returns>
         Task<string> IsValidHostLogin(string email);
 
+        string IsValidHost(string email);
+
+        string IsValidTraveller(string email);
+
+        bool CreateNewHostPassword(string newPassword, string hostId);
+
+        bool CreateNewTravellerPassword(string newPassword, string travellerId);
+
+
+
         /// <summary>
         /// UnImplemented Method for Checking valid traveller in Database
         /// </summary>

@@ -203,25 +203,25 @@ namespace MyNiceHome.BusinessManager
             }
 
             //checking null fields
-            if (email==null || password==null)
+            if (email == null || password == null)
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");
             }
 
-         
+
             string hashedPassword = await _repositoryUtility.IsValidHostLogin(email);
-            if(hashedPassword==null)
+            if (hashedPassword == null)
             {
                 throw new UserDoesNotExistException("Email not registered for host");
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
-            if(isSame==true)
+            if (isSame == true)
             {
                 //code to generate access token
                 JwtTokenHelper tokenobj = new JwtTokenHelper();
-                string tokenString = tokenobj.GenerateToken(email,"host");
+                string tokenString = tokenobj.GenerateToken(email, "host");
 
-                
+
             }
             return await Task.FromResult(isSame);
         }
@@ -239,7 +239,7 @@ namespace MyNiceHome.BusinessManager
             {
                 throw new NullReferenceException("Traveller");
             }
-             //checking for null fields
+            //checking for null fields
             if (email == null || password == null)
             {
                 throw new UserDoesNotExistException("Email or password cannot be null");
@@ -251,6 +251,102 @@ namespace MyNiceHome.BusinessManager
             }
             bool isSame = _userUtilityHelper.CheckPassword(password, hashedPassword);
             return (isSame);
+        }
+
+        /// <summary>
+        /// Method for sending mail to reset HostPassword 
+        /// </summary>
+        /// <param name="email"></param>
+        public Boolean ResetHostPassword(string email)
+        {
+            string hostId = _repositoryUtility.IsValidHost(email);
+            if (hostId == null)
+            {
+                throw new UserDoesNotExistException("Email does not exist");
+            }
+            try
+            {
+                MailHelper mailHelper = new MailHelper();
+                string subject = "Reset password Link";
+                string body = "http://localhost:4200/reset-password?id=" + hostId;
+                mailHelper.sendTo(email, subject, body);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+        /// <summary>
+        /// Method for sending mail to reset TravellerPassword
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public Boolean ResetTravellerPassword(string email)
+        {
+            string travellerGuid = _repositoryUtility.IsValidTraveller(email);
+            if (travellerGuid == null)
+            {
+                throw new UserDoesNotExistException("Email does not exist");
+            }
+            try
+            {
+                MailHelper mailHelper = new MailHelper();
+                string subject = "Reset password Link";
+                string body = "http://localhost:4200/reset-password-traveller?id=" + travellerGuid;
+                mailHelper.sendTo(email, subject, body);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+        /// <summary>
+        /// Sender Method to Update HostPassword
+        /// </summary>
+        /// <param name="newPassword"></param>
+        /// <param name="hostId"></param>
+        /// <returns></returns>
+        public bool ResetNewHostPassword(string newPassword, string hostId)
+        {
+            try
+            {
+
+                string hashedPassword = _userUtilityHelper.GetPasswordHash(newPassword);
+
+
+                bool result = _repositoryUtility.CreateNewHostPassword(hashedPassword, hostId);
+                return result;
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+
+        }
+        /// <summary>
+        /// Sender Method to Update TravellerPassword
+        /// </summary>
+        /// <param name="newPassword"></param>
+        /// <param name="travellerId"></param>
+        /// <returns></returns>
+        public bool ResetNewTravellerPassword(string newPassword, string travellerId)
+        {
+            try
+            {
+
+                string hashedPassword = _userUtilityHelper.GetPasswordHash(newPassword);
+
+
+                bool result = _repositoryUtility.CreateNewTravellerPassword(hashedPassword, travellerId);
+                return result;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+
         }
 
         /// <summary>

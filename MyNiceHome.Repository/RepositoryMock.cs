@@ -105,5 +105,32 @@ namespace MyNiceHome.Repository
             else
                 return null;
         }
+
+        public string IsValidHost(string email)
+        {
+            return "";
+
+        }
+
+        public string IsValidTraveller(string email)
+        {
+            return "";
+
+        }
+        public void CreateNewHostPassword(string newPassword, string hostId)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IRepositoryUtility.CreateNewHostPassword(string newPassword, string hostId)
+        {
+            throw new NotImplementedException();
+        }
+        public bool CreateNewTravellerPassword(string newPassword, string travellerId)
+        {
+            return true;
+        }
+
+
     }
 }

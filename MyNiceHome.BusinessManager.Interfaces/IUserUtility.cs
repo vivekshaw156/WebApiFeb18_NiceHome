@@ -40,6 +40,8 @@ namespace MyNiceHome.BusinessManager.Interfaces
         /// <returns></returns>
         Task<bool> HostLoginAccess(string email, string password);
 
+  
+
         /// <summary>
         ///  UnImplemented Method for Checking Business Logic for Traveller
         /// </summary>
@@ -47,5 +49,14 @@ namespace MyNiceHome.BusinessManager.Interfaces
         /// <param name="password"></param>
         /// <returns></returns>
         Task<bool> TravellerLoginAccess(string email, string password);
+
+        bool ResetHostPassword(string email);
+
+        bool ResetNewHostPassword(string newPassword, string HostId);
+
+        bool ResetTravellerPassword(string email);
+
+        bool ResetNewTravellerPassword(string newPassword, string TravellerId);
+
     }
 }

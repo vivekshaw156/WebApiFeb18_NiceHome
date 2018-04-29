@@ -50,9 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPropertyRepositoryUtility.cs" />
     <Compile Include="MyNiceHomeContext.cs" />
     <Compile Include="IRepositoryUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyRepositoryUtility.cs" />
     <Compile Include="RepositoryMock.cs" />
     <Compile Include="RepositoryUtility.cs" />
   </ItemGroup>

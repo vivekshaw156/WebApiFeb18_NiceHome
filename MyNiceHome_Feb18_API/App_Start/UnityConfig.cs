@@ -18,7 +18,9 @@ namespace MyNiceHome_Feb18_API
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IUserUtility, UserUtility>();
+            container.RegisterType<IPropertyUtility, PropertyUtility>();
             container.RegisterType<IRepositoryUtility, RepositoryUtility>();
+            container.RegisterType<IPropertyRepositoryUtility, PropertyRepositoryUtility>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

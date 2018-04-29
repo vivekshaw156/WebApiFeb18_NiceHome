@@ -46,10 +46,12 @@ namespace MyNiceHome.BusinessManager
         public async Task<bool> CreateNewHost(Host host)
         {
             var cityHost = (host.HostCity).ToUpper();
-            var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
-            var patternCity = new Regex(@"^[A-Z]+$");
-            //var patternEmail = new Regex(@"^[a-zA-Z0-9](\.?[a-zA-Z0-9]){1,}@([a-zA-Z]+)\.com$");
-            var patternPhone = new Regex(@"^[0-9]*$");
+
+            var patternName = new Regex(@"^[a-zA-Z]+([\s][a-zA-Z]+)*$");
+            var patternCity = new Regex(@"^[a-zA-Z]+([\s][a-zA-Z]+)*$");
+            var patternPhone = new Regex(@"^[6-9][0-9]{9}$");
+            
+
 
             if (host == null)
             {
@@ -119,10 +121,10 @@ namespace MyNiceHome.BusinessManager
         {
             traveller.TravellerCity = (traveller.TravellerCity).ToUpper();
 
-            var patternName = new Regex(@"^[a-zA-Z][a-z A-Z\s-]+$");
-            var patternCity = new Regex(@"^[A-Z]+$");
-            //var patternEmail = new Regex(@"^[a-zA-Z0-9](\.?[a-zA-Z0-9]){1,}@([a-zA-Z]+)\.com$");
-            var patternPhone = new Regex(@"^[0-9]*$");
+            var patternName = new Regex(@"^[a-zA-Z]+([\s][a-zA-Z]+)*$");
+            var patternCity = new Regex(@"^[a-zA-Z]+([\s][a-zA-Z]+)*$");
+            var patternPhone = new Regex(@"^[6-9][0-9]{9}$");
+
 
             if (traveller == null)
             {

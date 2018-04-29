@@ -67,6 +67,7 @@
     <Compile Include="MyNiceHome.BusinessManager.Helpers\MailHelper.cs" />
     <Compile Include="MyNiceHome.BusinessManager.Helpers\UserUtilityHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyUtility.cs" />
     <Compile Include="UserUtility.cs" />
   </ItemGroup>
   <ItemGroup>

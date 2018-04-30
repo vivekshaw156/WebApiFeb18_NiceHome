@@ -58,8 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property.cs" />
     <Compile Include="PropertyImage.cs" />
+    <Compile Include="PropertyList.cs" />
     <Compile Include="PropertyRating.cs" />
     <Compile Include="PropertyType.cs" />
+    <Compile Include="SearchData.cs" />
     <Compile Include="Traveller.cs" />
     <Compile Include="TravellerRating.cs" />
   </ItemGroup>

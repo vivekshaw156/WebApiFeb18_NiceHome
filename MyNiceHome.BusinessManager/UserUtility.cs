@@ -268,7 +268,7 @@ namespace MyNiceHome.BusinessManager
             {
                 MailHelper mailHelper = new MailHelper();
                 string subject = "Reset password Link";
-                string body = "https://mynicehomefeb2018devfrontend.azurewebsites.net/reset-password?id=" + hostId;
+                string body = "https://mynicehomefeb2018qafrontend.azurewebsites.net/reset-password?id=" + hostId;
                 mailHelper.sendTo(email, subject, body);
                 return true;
             }
@@ -293,7 +293,7 @@ namespace MyNiceHome.BusinessManager
             {
                 MailHelper mailHelper = new MailHelper();
                 string subject = "Reset password Link";
-                string body = "https://mynicehomefeb2018devfrontend.azurewebsites.net/reset-password-traveller?id=" + travellerGuid;
+                string body = "https://mynicehomefeb2018qafrontend.azurewebsites.net/reset-password-traveller?id=" + travellerGuid;
                 mailHelper.sendTo(email, subject, body);
                 return true;
             }
